@@ -5,6 +5,7 @@ import { push } from "connected-react-router";
 // import * as actions from "../store/actions";
 import * as actions from "../../store/actions";
 import './Login.scss';
+import {handleLoginApi} from '../../services/userService'
 import { FormattedMessage } from 'react-intl';
 
 
@@ -14,7 +15,9 @@ class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            isShowPassword: false,
+            errMessage: ''
         }
     }
     handleOnChangeUsername = (e) => {
@@ -30,9 +33,26 @@ class Login extends Component {
         })
     }
 
-    handleLogin = () => {
-        console.log(this.state.username);
-        console.log(this.state.password);
+    handleLogin = async () => {
+        this.setState({
+            errMessage: ''
+        })
+        let response = await handleLoginApi(this.state.username,this.state.password)
+        if(response.data && response.data.token){
+            // console.log(response.data)
+            this.props.userLoginSuccess(response.data)
+        }
+        else{
+            this.setState({
+                errMessage: "Tên đăng nhập hoặc mật khẩu không đúng!"
+            })
+        }
+    }
+
+    handleShowHidePassword = () => {
+        this.setState({
+            isShowPassword: !this.state.isShowPassword
+        })
     }
 
     render() {
@@ -50,12 +70,23 @@ class Login extends Component {
                                 value={this.state.username} 
                                 onChange={(e) => this.handleOnChangeUsername(e)}/>
                         </div>
-                        <div className='col-12 form-group login-inpu'>
+                        <div className='col-12 form-group login-input'>
                             <label>Password:</label>
-                            <input type='password' className='form-control'
-                                placeholder='Enter your password'
-                                value={this.state.password}
-                                onChange={(e) => this.handleOnChangePassword(e)}/>
+                            <div className='custom-input-password'>
+                                <input type={this.state.isShowPassword ? 'text' : 'password'} className='form-control'
+                                    placeholder='Enter your password'
+                                    value={this.state.password}
+                                    onChange={(e) => this.handleOnChangePassword(e)}/>
+                                
+                                <span
+                                    onClick={() => this.handleShowHidePassword()}>
+                                    <i className={this.state.isShowPassword ?  'fas fa-eye-slash' : "fas fa-eye"}></i>
+                                </span>
+                            </div>
+                            
+                        </div>
+                        <div className='col-12' style={{color:'red'}}>
+                            {this.state.errMessage}
                         </div>
                         <div className='col-12'>
                             <button className='btn-login' onClick={() => this.handleLogin()}>Login</button>
@@ -80,8 +111,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
