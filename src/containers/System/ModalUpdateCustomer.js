@@ -17,7 +17,6 @@ class ModalUpdateCustomer extends Component {
             customerPhone: '',
             birthday: '',
             customerPassword: '',
-            gender: '',
             isLoyalty: '',
             loyaltyLevel: '',
             saleOff: '',
@@ -29,10 +28,9 @@ class ModalUpdateCustomer extends Component {
     
     componentDidMount() {
         let customer = this.props.currentCustomer;
-
+        console.log('check:', customer)
         if(customer && !_.isEmpty(customer))
         {
-            
             this.setState({
                 id: customer.id,
                 customerFullName: customer.fullName,
@@ -73,7 +71,7 @@ class ModalUpdateCustomer extends Component {
 
     checkValideInput = () => {
         let isValid = true;
-        let arrInput = ['customerFullName','customerEmail','customerPhone', 'gender', 'birthday','isLoyalty'];
+        let arrInput = ['customerFullName','customerEmail','customerPhone', 'birthday','isLoyalty'];
         
         for(let i = 0; i < arrInput.length; i++){
             if(!this.state[arrInput[i]]){
@@ -147,14 +145,14 @@ class ModalUpdateCustomer extends Component {
                                 value={this.state.birthday}
                             />
                         </div>
-                        {/* <div className="input-container">
+                        <div className="input-container">
                             <label>Password</label>
                             <input 
                                 type="password" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "customerPassword")}}
                                 value={this.state.customerPassword}
                             />
-                        </div> */}
+                        </div>
                         <div className="input-container">
                             <label>isLoyalty</label>
                             <input 

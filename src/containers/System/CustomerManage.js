@@ -115,7 +115,6 @@ class CustomerManage extends Component {
                     isOpen={this.state.isOpenModalCustomer}
                     toggleFromParent={this.toggleCustomerModal}
                     createNewCustomer={this.createNewCustomer}
-                   
                 />
                 {
                 this.state.isOpenModalUpdateCustomer &&
@@ -149,7 +148,7 @@ class CustomerManage extends Component {
                             {
                                 arrCustomer && arrCustomer.map((item, index) => {
                                     return (
-                                        <tr className="divClass">
+                                        <tr key={item.id} className="divClass">
                                             <td>{item.fullName}</td>
                                             <td>{item.email}</td>
                                             <td>{item.addressCustomer}</td>
