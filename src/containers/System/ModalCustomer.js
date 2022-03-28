@@ -156,17 +156,16 @@ class ModalCustomer extends Component {
                                 value={this.state.customerPassword}
                             />
                         </div>
-                        <div className="input-container">
-                            <div className="row">
-                                <div className="col-sm-12">
+                        <div >
+                            <div>
+                                <div className="fix1">
                                 <label>Gender</label>
                                     <form>
-                                    <div onChange={this.onChangeValue}>
+                                    <div onChange={this.onChangeValue} className="fix1">
                                         <input type="radio" value="1" name="gender" /> Male
                                         <input type="radio" value="0" name="gender" /> Female
                                     </div>
                                     </form>
-
                                 </div>
                             </div>
                         </div>

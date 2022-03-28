@@ -39,7 +39,6 @@ class CustomerManage extends Component {
     }
 
     handleUpdateCustomer = async(data) =>{
-        console.log('check',data)
         this.setState ({
             isOpenModalUpdateCustomer: true,
             customerUpdate: data,

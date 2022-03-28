@@ -27,12 +27,10 @@ const deleteCustomer = (customerId) => {
 }
 
 const updateCustomerService = (data) => {
-  console.log('check data: ',data)
   return axios.put('/v1/customer/update', data, authHeader())
 }
 
 const createNewCustomerService = (data) => {
-    console.log('check data: ',data)
     return axios.post('/v1/customer/create', data, authHeader())
 }
 export {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService}

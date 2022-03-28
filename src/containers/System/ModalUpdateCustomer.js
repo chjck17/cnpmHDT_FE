@@ -28,7 +28,6 @@ class ModalUpdateCustomer extends Component {
     
     componentDidMount() {
         let customer = this.props.currentCustomer;
-        console.log('check:', customer)
         if(customer && !_.isEmpty(customer))
         {
             this.setState({
@@ -93,7 +92,6 @@ class ModalUpdateCustomer extends Component {
     }    
 
     render() {
-        console.log('in : ',this.props)
         return (
             <Modal                 
                 isOpen={this.props.isOpen}
