@@ -2,82 +2,174 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './CustomerManage.scss';
-import {getAllCustomers} from '../../services/customerService';
-//import {getAllCustomers} from '../../services/userService';
+import {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService} from '../../services/customerService';
+import ModalCustomer from './ModalCustomer';
+import { emitter} from "../../utils/emitter";
+import ModalUpdateCustomer from './ModalUpdateCustomer';
+
 class CustomerManage extends Component {
 
     constructor(props) {
         super(props);
         this.state ={
-            //arrCustomer: []
-            data: []
+            arrCustomer: [],
+            isOpenModalCustomer: false,
+            isOpenModalUpdateCustomer: false,
+            customerUpdate: {},
         }
     }
 
     async componentDidMount() {
-        /*this.callBackendAPI()
-        .then(res => this.setState({ data: res.data }))
-        .catch(err => console.log(err));*/
-        let response = await getAllCustomers('All');
-        console.log("get customer: ", response)
-        if(response && response.errCode ===0){
+        await this.getAllCustomersFromReact();
+    }
+
+    getAllCustomersFromReact = async () => {
+        let response = await getAllCustomers();
+        if (response && response.result===true){
             this.setState({
-                arrCustomer: response.customers
-            }, () =>{
-        //        console.log('check state customer ', this.state.customers);
+                arrCustomer: response.data
             })
-      //      console.log('check state customer 1 ', this.state.customers);
         }
-     //   console.log('check state customer 2 ', this.state.customers);*/
+    }
+
+    handleAddNewCustomer = () =>{
+        this.setState ({
+            isOpenModalCustomer: true,
+        })
+    }
+
+    handleUpdateCustomer = async(data) =>{
+        console.log('check',data)
+        this.setState ({
+            isOpenModalUpdateCustomer: true,
+            customerUpdate: data,
+        })
+    }
+
+    doHandleUpdateCustomer = async (data) =>{
+        try{
+            let response = await updateCustomerService(data);
+            if(response && response.response===true){
+                alert(response.message)
+            }else{
+                await this.getAllCustomersFromReact();
+                this.setState({
+                    isOpenModalUpdateCustomer: false,
+                })
+  
+            }
+        }catch(e){
+            console.log(e)
+        }  
 
     }
 
-  /*  async callBackendAPI() {
-        const response = await fetch('/v1/customer/list');
-        const body = await response.json();
+    toggleCustomerModal = () =>{
+        this.setState ({
+            isOpenModalCustomer: !this.state.isOpenModalCustomer,
+        })
+    }
+
+    toggleUpdateCustomerModal = () =>{
+        this.setState ({
+            isOpenModalUpdateCustomer: !this.state.isOpenModalUpdateCustomer,
+        })
+    }
+
+    createNewCustomer = async (data) => {
+        try{
+            let response = await createNewCustomerService(data);
+            if(response && response.response===false){
+                alert(response.message)
+            }else{
+                await this.getAllCustomersFromReact();
+                this.setState({
+                    isOpenModalCustomer: false,
+                })
+                emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                
+            }
+        }catch(e){
+            console.log(e)
+        }    
+    }
     
-        if(response.status !== 200) {
-          throw Error(body.message)
+    handleDeleteCustomer = async (data) => {
+        try{
+            let response = await deleteCustomer(data.id);
+            if(response && response.response===false){
+                alert(response.message)
+            }else{
+                await this.getAllCustomersFromReact();
+            }
+        }catch(e){
+            console.log(e)
         }
-        return body;
-      }*/
+    }
 
     render() {
-        //console.log('check render ', this.state)
-        //let data =this.state.data
+        let arrCustomer =this.state.arrCustomer.data
         return (
             <div className="customers-container">
+                <ModalCustomer
+                    isOpen={this.state.isOpenModalCustomer}
+                    toggleFromParent={this.toggleCustomerModal}
+                    createNewCustomer={this.createNewCustomer}
+                   
+                />
+                {
+                this.state.isOpenModalUpdateCustomer &&
+                <ModalUpdateCustomer
+                    isOpen={this.state.isOpenModalUpdateCustomer}
+                    toggleFromParent={this.toggleUpdateCustomerModal}
+                    currentCustomer={this.state.customerUpdate}
+                    updateCustomer={this.doHandleUpdateCustomer}
+                />}
                 <div className="title text-center">Manage customer</div>
+                <div className="mx-1">
+                    <button className="btn btn-primary px-3" onClick={()=>this.handleAddNewCustomer()}>
+                        <i className="fas fa-user-plus px-1"></i>
+                        Add New Customer
+                    </button>
+                </div>
                 <div className="customers-table mt-3 mx-1">
                     <table id="customers">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Gender</th>
-                            <th>Sale Off</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Birthday</th>
+                                <th>Phone</th>   
+                                <th>Gender</th>
+                                <th>Sale Off</th>
+                                <th>Loyalty Level</th>
+                                <th>Actions</th>
+                            </tr>
                             {
-                                /*data && data.map((item, index) => {
-                                 //   return (
-                                   //     <div className="divClass">
-                                     //       <td>{item.customerFullName}</td>
-                                       //     <td>{item.customerEmail}</td>
-                                        //    <td>{}</td>
-                                       // </div>
-
+                                arrCustomer && arrCustomer.map((item, index) => {
+                                    return (
+                                        <tr className="divClass">
+                                            <td>{item.fullName}</td>
+                                            <td>{item.email}</td>
+                                            <td>{item.addressCustomer}</td>
+                                            <td>{item.birthdayCustomer}</td>                                        
+                                            <td>{item.phone}</td>
+                                            {item.genderCustomer==0?<td>Female</td>:<td>Male</td>}
+                                            <td>{item.saleOffCustomer}</td>
+                                            <td>{item.loyaltyLevelCustomer}</td>
+                                            <td>
+                                                <button className="btn-actions" onClick={()=>this.handleUpdateCustomer(item)}><i className="fas fa-edit"></i></button>                                              
+                                                <button className="btn-actions" onClick={()=>this.handleDeleteCustomer(item)}><i className="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
                                     )
-                                })
-                                */
+                                }) 
                             }
-                        </tr>
-                    
+                        </tbody>
                     </table>
                 </div>
+                
             </div>
         );
     }
