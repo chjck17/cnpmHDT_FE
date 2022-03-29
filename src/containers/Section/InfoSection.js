@@ -5,12 +5,12 @@ class InfoSection extends Component {
     render() {
         return (
             <section className='info_section layout_padding2'>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="logo_detail">
-                                <div class="logo-box">
-                                    <a class="navbar-brand" href="index.html">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div className="logo_detail">
+                                <div className="logo-box">
+                                    <a className="navbar-brand" href="index.html">
                                         <img src="assets/images/logo.png" alt="" />
                                         <span>
                                             Jetcycle
@@ -23,8 +23,8 @@ class InfoSection extends Component {
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div class="address_box">
+                        <div className="col-md-5">
+                            <div className="address_box">
                                 <h6>
                                     Adderess
                                 </h6>
@@ -39,30 +39,30 @@ class InfoSection extends Component {
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="link_box">
+                        <div className="col-md-3">
+                            <div className="link_box">
                                 <h6>
                                     Menu
                                 </h6>
-                                <ul class="  ">
-                                    <li class=" ">
-                                        <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <ul className="  ">
+                                    <li className=" ">
+                                        <a className="" href="index.html">Home <span className="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="">
-                                        <a class="" href="about.html">About </a>
+                                    <li className="">
+                                        <a className="" href="about.html">About </a>
                                     </li>
-                                    <li class="">
-                                        <a class="" href="cycle.html"> Our cycles </a>
+                                    <li className="">
+                                        <a className="" href="cycle.html"> Our cycles </a>
                                     </li>
-                                    <li class="">
-                                        <a class="" href="contact.html">Contact us</a>
+                                    <li className="">
+                                        <a className="" href="contact.html">Contact us</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="social_container">
-                        <div class="social_box">
+                    <div className="social_container">
+                        <div className="social_box">
                             <a href="">
                                 <img src="assets/images/facebook-logo-button.png" alt="" />
                             </a>

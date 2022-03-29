@@ -5,11 +5,11 @@ class SubcribeSection extends Component {
     render() {
         return (
             <section className='subscribe_section layout_padding'>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7 mx-auto">
-                            <div class="subscribe_form ">
-                                <div class="heading_container">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-7 mx-auto">
+                            <div className="subscribe_form ">
+                                <div className="heading_container">
                                     <h2>
                                         subscribe our newsletter
                                     </h2>

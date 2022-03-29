@@ -4,16 +4,16 @@ class AboutSection extends Component {
     render() {
         return (
             <section className='about_section layout_padding'>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5 ">
-                            <div class="img-box">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-5 ">
+                            <div className="img-box">
                                 <img src="assets/images/about-img.png" alt="" />
                             </div>
                         </div>
-                        <div class="col-md-6 offset-md-1">
-                            <div class="detail-box">
-                                <div class="heading_container">
+                        <div className="col-md-6 offset-md-1">
+                            <div className="detail-box">
+                                <div className="heading_container">
                                     <h2>
                                         about cycle
                                     </h2>

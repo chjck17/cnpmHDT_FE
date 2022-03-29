@@ -4,24 +4,24 @@ class ContactSection extends Component {
     render() {
         return (
             <section className='contact_section'>
-                <div class="contact_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="contact_form layout_padding">
-                                    <div class="heading_container">
+                <div className="contact_container">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="contact_form layout_padding">
+                                    <div className="heading_container">
                                         <h2>
                                             Get in touch
                                         </h2>
                                     </div>
                                     <form action="">
                                         <input type="text" placeholder="Full name " />
-                                        <div class="top_input">
+                                        <div className="top_input">
                                             <input type="email" placeholder="Email" />
                                             <input type="text" placeholder="Phone Number" />
                                         </div>
 
-                                        <input type="text" placeholder="Message" class="message_input" />
+                                        <input type="text" placeholder="Message" className="message_input" />
                                         <button>
                                             Send
                                         </button>
