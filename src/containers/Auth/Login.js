@@ -7,6 +7,7 @@ import * as actions from "../../store/actions";
 import './Login.scss';
 import {handleLoginApi} from '../../services/userService'
 import { FormattedMessage } from 'react-intl';
+import { cnpmConstant } from '../../utils/constant.js';
 
 
 
@@ -39,9 +40,9 @@ class Login extends Component {
         })
         let response = await handleLoginApi(this.state.username,this.state.password)
         if(response.data && response.data.token){
-            // console.log(response.data)
-            localStorage.setItem("token", response.data.token)
-            this.props.userLoginSuccess(JSON.stringify(response.data))
+            console.log(response.data)
+            localStorage.setItem("token", response.data.token)              
+            this.props.userLoginSuccess(response.data) 
         }
         else{
             this.setState({
@@ -113,7 +114,7 @@ const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
         // userLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 

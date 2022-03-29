@@ -20,7 +20,7 @@ class Header extends Component {
 
                 {/* nút logout */}
                 <div className="btn btn-logout" onClick={processLogout}>
-                    <i className="fas fa-sign-out-alt"></i>
+                    <i className="fa fa-sign-out" aria-hidden="true"></i>
                 </div>
             </div>
         );

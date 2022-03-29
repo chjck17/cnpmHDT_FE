@@ -59,7 +59,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js"></script>
+    
+</body>
+
+<script type="text/javascript" src="./assets/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="./assets/js/bootstrap.js"></script>
     <script>
       $('.carousel').on('slid.bs.carousel', function () {
@@ -67,7 +70,6 @@
         indicators = $(".carousel-indicators li.active").data("slide-to");
         a = $(".indicator-2").find("[data-slide-to='" + indicators + "']").addClass("active");
       })
-    </script>
-</body>
+  </script>
 
 </html>
