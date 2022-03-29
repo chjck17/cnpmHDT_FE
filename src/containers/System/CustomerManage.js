@@ -157,8 +157,8 @@ class CustomerManage extends Component {
                                             <td>{item.saleOffCustomer}</td>
                                             <td>{item.loyaltyLevelCustomer}</td>
                                             <td>
-                                                <button className="btn-actions" onClick={()=>this.handleUpdateCustomer(item)}><i className="fas fa-edit"></i></button>                                              
-                                                <button className="btn-actions" onClick={()=>this.handleDeleteCustomer(item)}><i className="fas fa-trash-alt"></i></button>
+                                                <button className="btn-actions" onClick={()=>this.handleUpdateCustomer(item)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>                                              
+                                                <button className="btn-actions" onClick={()=>this.handleDeleteCustomer(item)}><i className="fa fa-trash" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                     )
