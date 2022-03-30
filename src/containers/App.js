@@ -6,7 +6,7 @@ import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 
 
-import { adminIsAuthenticated, adminIsNotAuthenticated, userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
+import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils'
 
@@ -49,7 +49,7 @@ class App extends Component {
                 <Router history={history}>
                     <div className="main-container">
                     <ConfirmModal />
-                        {this.props.isLoggedIn && this.props.userInfo.kind ==1 &&  <Header />}
+                        {/* {this.props.isLoggedIn && this.props.userInfo.kind == 1 &&  <Header />} */}
 
                         <span className="content-container">
                             <Switch>

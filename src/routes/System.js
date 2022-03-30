@@ -6,13 +6,14 @@ import CustomerManage from '../containers/System/CustomerManage';
 import ProductManage from '../containers/System/ProductManage';
 import CategoryManage from '../containers/System/CategoryManage';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
-
+import Header from '../containers/Header/Header';
 class System extends Component {
     render() {
         const { systemMenuPath } = this.props;
         return (
             <div className="system-container">
                 <div className="system-list">
+                    <Header />
                     <Switch>
                         <Route path="/system/user-manage" component={UserManage} />
                         <Route path="/system/category-manage" component={CategoryManage} />
