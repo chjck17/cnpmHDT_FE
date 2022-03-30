@@ -9,4 +9,12 @@ const createNewCategory = (data) => {
     return axios.post('/v1/category/create',data,authHeader())
 }
 
-export {getAllCategories,createNewCategory}
+const updateCategory = (data) => {
+    return axios.put('/v1/category/update',data,authHeader())
+}
+
+const deleteCategory = (id) => {
+    return axios.delete(`/v1/category/delete/${id}`,authHeader())
+}
+
+export {getAllCategories,createNewCategory,updateCategory,deleteCategory}

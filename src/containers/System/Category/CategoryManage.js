@@ -3,14 +3,17 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './CategoryManage.scss';
 import CreateCategoryModal from './CreateCategoryModal';
+import UpdateCategoryModal from './UpdateCategoryModal';
 import { emitter} from "../../../utils/emitter";
-import {getAllCategories,createNewCategory} from '../../../services/categoryService'
+import {getAllCategories,createNewCategory,updateCategory,deleteCategory} from '../../../services/categoryService'
 class CategoryManage extends Component {
     constructor(props){
         super(props);
         this.state = {
             categories : [],
-            isOpenCreateCategoryModal: false
+            isOpenCreateCategoryModal: false,
+            isOpenUpdateCategoryModal: false,
+            categoryUpdate: {}
         }
     }
 
@@ -23,6 +26,12 @@ class CategoryManage extends Component {
     toggleCategoryModal = () =>{
         this.setState ({
             isOpenCreateCategoryModal: !this.state.isOpenCreateCategoryModal,
+        })
+    }
+
+    toggleUpdateCategoryModal = () => {
+        this.setState ({
+            isOpenUpdateCategoryModal: !this.state.isOpenUpdateCategoryModal,
         })
     }
 
@@ -41,6 +50,32 @@ class CategoryManage extends Component {
         })
     }
 
+    handleUpdateCategory = (data) => {
+        this.setState({
+            isOpenUpdateCategoryModal: true,
+            categoryUpdate: data
+        })
+    }
+
+    handleDeleteCategory = async (id) => {
+        let response = await deleteCategory(id);
+        alert(response.message)
+        await this.getAllCategoriesFromReact();
+    }
+
+    updateCategoryFromReact = async(data) => {
+        let response = await updateCategory(data);
+        if(response && response.result){
+            await this.getAllCategoriesFromReact();
+            this.setState({
+                isOpenUpdateCategoryModal: false,
+            })
+            alert(response.message)
+        }else{
+            alert(response.message)
+        }
+    }
+
     createNewCategoryFromReact = async (data) => {
         let response = await createNewCategory(data);
         if(response && response.result){
@@ -50,7 +85,7 @@ class CategoryManage extends Component {
             })
             emitter.emit('EVENT_CLEAR_MODAL_DATA')
         }else{
-            alert(response.data.message)
+            alert(response.message)
         }
     }
 
@@ -64,6 +99,14 @@ class CategoryManage extends Component {
                     toggleFromParent={this.toggleCategoryModal}
                     createNewCategoryFromReact={this.createNewCategoryFromReact}
                 />
+                {
+                this.state.isOpenUpdateCategoryModal &&
+                <UpdateCategoryModal
+                    isOpen={this.state.isOpenUpdateCategoryModal}
+                    toggleFromParent={this.toggleUpdateCategoryModal}
+                    currentCategory={this.state.categoryUpdate}
+                    updateCategoryFromReact={this.updateCategoryFromReact}
+                />}
                 <div 
                     style={{fontSize : 30 , marginBottom : 30, marginTop : 20, color : 'red'}} 
                     className='title text-center'
@@ -93,8 +136,8 @@ class CategoryManage extends Component {
                             <td>{category.categoryOrdering}</td>
                             <td>{category.parentId? category.parentId:'NULL'}</td>
                             <td>
-                                <button className='btn-action edit'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button className='btn-action delete'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button className='btn-action edit' onClick={()=>this.handleUpdateCategory(category)} ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button className='btn-action delete' onClick={()=>this.handleDeleteCategory(category.id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     ))}
