@@ -7,6 +7,7 @@ import * as actions from "../../store/actions";
 import './Login.scss';
 import {handleLoginApi} from '../../services/userService'
 import { FormattedMessage } from 'react-intl';
+import { cnpmConstant } from '../../utils/constant.js';
 
 
 
@@ -40,6 +41,7 @@ class Login extends Component {
         let response = await handleLoginApi(this.state.username,this.state.password)
         if(response.data && response.data.token){
             // console.log(response.data)
+            localStorage.setItem('token',response.data.token)
             this.props.userLoginSuccess(response.data)
         }
         else{
@@ -80,7 +82,7 @@ class Login extends Component {
                                 
                                 <span
                                     onClick={() => this.handleShowHidePassword()}>
-                                    <i className={this.state.isShowPassword ?  'fas fa-eye-slash' : "fas fa-eye"}></i>
+                                    <i className={this.state.isShowPassword ?  'fa fa-eye-slash' : "fa fa-eye"} aria-hidden="true" ></i>
                                 </span>
                             </div>
                             
@@ -112,7 +114,7 @@ const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
         // userLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 
