@@ -5,7 +5,7 @@ const handleLoginApi = (username,password) => {
 }
 
 const getAllUsers = () => {
-    return axios.get('/v1/account/list',authHeader)
+    return axios.get('/v1/account/list',authHeader())
 }
 
 export {handleLoginApi,getAllUsers}
