@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { emitter} from "../../utils/emitter";
+import { emitter} from "../../../utils/emitter";
 
 class CreateCategoryModal extends Component {
 
@@ -16,14 +16,8 @@ class CreateCategoryModal extends Component {
         }
 
         this.listenToEmitter();
-        this.onChangeValue=this.onChangeValue.bind(this);
     }
 
-    // onChangeValue(event){
-    //     this.setState({
-    //         gender: event.target.value,
-    //     })
-    // }
     listenToEmitter() {
         emitter.on('EVENT_CLEAR_MODAL_DATA', () =>{
             //reset state
@@ -79,11 +73,11 @@ class CreateCategoryModal extends Component {
                 size="lg"
                 centered
             >
-                <ModalHeader>Create Category</ModalHeader>
+                <ModalHeader className='modal-category-header'>Create Category</ModalHeader>
                 <ModalBody>
                     <div className="modal-category-body">
                         <div className="input-container">
-                            <label>Category Name</label>
+                            <label>Category Name <span class="required">*</span></label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "categoryName")}}
@@ -91,7 +85,7 @@ class CreateCategoryModal extends Component {
                             />
                         </div>
                         <div className="input-container">
-                            <label>Category Description</label>
+                            <label>Category Description <span class="required">*</span></label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "categoryDescription")}}

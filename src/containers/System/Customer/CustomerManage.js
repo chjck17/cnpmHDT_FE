@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './CustomerManage.scss';
-import {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService} from '../../services/customerService';
+import {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService} from '../../../services/customerService';
 import ModalCustomer from './ModalCustomer';
-import { emitter} from "../../utils/emitter";
+import { emitter} from "../../../utils/emitter";
 import ModalUpdateCustomer from './ModalUpdateCustomer';
 
 class CustomerManage extends Component {

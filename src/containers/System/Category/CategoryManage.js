@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './CategoryManage.scss';
 import CreateCategoryModal from './CreateCategoryModal';
-import { emitter} from "../../utils/emitter";
-import {getAllCategories,createNewCategory} from '../../services/categoryService'
+import { emitter} from "../../../utils/emitter";
+import {getAllCategories,createNewCategory} from '../../../services/categoryService'
 class CategoryManage extends Component {
     constructor(props){
         super(props);
@@ -93,8 +93,8 @@ class CategoryManage extends Component {
                             <td>{category.categoryOrdering}</td>
                             <td>{category.parentId? category.parentId:'NULL'}</td>
                             <td>
-                                <button className='btn-actions edit'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button className='btn-actions delete'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button className='btn-action edit'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button className='btn-action delete'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                     ))}

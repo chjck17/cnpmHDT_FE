@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
-import CustomerManage from '../containers/System/CustomerManage';
+import CustomerManage from '../containers/System/Customer/CustomerManage';
 import ProductManage from '../containers/System/ProductManage';
-import CategoryManage from '../containers/System/CategoryManage';
+import CategoryManage from '../containers/System/Category/CategoryManage.js';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import Header from '../containers/Header/Header';
 class System extends Component {
