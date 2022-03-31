@@ -6,6 +6,7 @@ export const adminMenu = [
                 subMenus: [
                     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
                     { name: 'menu.system.system-administrator.customer-manage', link: '/system/customer-manage' },
+                    { name: 'menu.system.system-administrator.province-manage', link: '/system/province-manage' },
                     { name: 'menu.system.system-administrator.product-manage', link: '/system/product-manage' },
                     { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
                 ]

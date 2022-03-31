@@ -125,8 +125,8 @@ class CustomerManage extends Component {
                 />}
                 <div className="title text-center">Manage customer</div>
                 <div className="mx-1">
-                    <button className="btn btn-primary px-3" onClick={()=>this.handleAddNewCustomer()}>
-                        <i className="fas fa-user-plus px-1"></i>
+                    <button className="btn btn-primary px-2" onClick={()=>this.handleAddNewCustomer()}>
+                        <i className="fa fa-user-plus px-2" aria-hidden="true"></i>
                         Add New Customer
                     </button>
                 </div>
