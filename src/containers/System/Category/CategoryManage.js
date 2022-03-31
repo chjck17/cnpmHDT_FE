@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './CategoryManage.scss';
+import './CategoryManage.scss'; 
 import CreateCategoryModal from './CreateCategoryModal';
 import UpdateCategoryModal from './UpdateCategoryModal';
 import { emitter} from "../../../utils/emitter";
@@ -9,7 +9,7 @@ import {getAllCategories,createNewCategory,updateCategory,deleteCategory} from '
 class CategoryManage extends Component {
     constructor(props){
         super(props);
-        this.state = {
+        this.state = { 
             categories : [],
             isOpenCreateCategoryModal: false,
             isOpenUpdateCategoryModal: false,
@@ -49,7 +49,6 @@ class CategoryManage extends Component {
             isOpenCreateCategoryModal: true,
         })
     }
-
     handleUpdateCategory = (data) => {
         this.setState({
             isOpenUpdateCategoryModal: true,

@@ -121,7 +121,7 @@ class ModalUpdateCustomer extends Component {
                         </div>
                         <div className="input-container">
                             <label>Address</label>
-                            <input 
+                               <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "customerAddress")}}
                                 value={this.state.customerAddress}

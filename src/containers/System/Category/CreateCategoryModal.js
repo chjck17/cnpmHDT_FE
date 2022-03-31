@@ -45,20 +45,6 @@ class CreateCategoryModal extends Component {
         })
     }
 
-    checkValidInput = () => {
-        let isValid = true;
-        let arrInput = ['customerFullName','customerEmail','customerPhone','birthday','gender','isLoyalty'];
-        
-        for(let i = 0; i < arrInput.length; i++){
-            if(!this.state[arrInput[i]]){
-                isValid = false;
-                alert('Missing parameter: '+ arrInput[i]);
-                break;
-            }
-        }
-        return isValid;
-    }
-
     handleAddNewCategory = () => {
         this.props.createNewCategoryFromReact(this.state);
     }
