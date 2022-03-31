@@ -32,6 +32,7 @@
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người sử dụng",
                 "customer-manage": "Quản lý khách hàng",
+                "province-manage": "Quản lý tỉnh-thành, quận-huyện, phường-xã",
                 "product-manage": "Quản lý gói",
                 "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
             },
@@ -69,6 +70,8 @@
         },
         "customer-manage":{
 
+        },
+        "province-manage":{
         },
         "product-manage": {
             "fail-to-load-foprtype": "Không thể tải về danh sách gói",
