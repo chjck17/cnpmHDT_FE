@@ -5,6 +5,7 @@ import UserManage from '../containers/System/UserManage';
 import CustomerManage from '../containers/System/Customer/CustomerManage';
 import ProvinceManage from '../containers/System/Province/ProvinceManage';
 import ProductManage from '../containers/System/ProductManage';
+import NewsManage from '../containers/System/News/NewsManage';
 import CategoryManage from '../containers/System/Category/CategoryManage.js';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import Header from '../containers/Header/Header';
@@ -17,6 +18,7 @@ class System extends Component {
                     <Header />
                     <Switch>
                         <Route path="/system/user-manage" component={UserManage} />
+                        <Route path="/system/news-manage" component={NewsManage} />
                         <Route path="/system/category-manage" component={CategoryManage} />
                         <Route path="/system/customer-manage" component={CustomerManage} />
                         <Route path="/system/province-manage" component={ProvinceManage} />

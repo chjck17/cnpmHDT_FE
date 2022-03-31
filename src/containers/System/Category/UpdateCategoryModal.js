@@ -3,34 +3,35 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter} from "../../../utils/emitter";
+import _ from 'lodash';
 
-class CreateCategoryModal extends Component {
+class ModalUpdateCategory extends Component {
 
     constructor(props){
         super(props);
         this.state = {
+            id: '',
             categoryName: '',
             categoryDescription: '',
             categoryOrdering: '',
-            parentId: ''
+            status: ''
         }
-
-        this.listenToEmitter();
     }
 
-    listenToEmitter() {
-        emitter.on('EVENT_CLEAR_MODAL_DATA', () =>{
-            //reset state
-            this.setState({
-                categoryName: '',
-                categoryDescription: '',
-                categoryOrdering: '',
-                parentId: ''
-            })
-        })
-    }
 
+    
     componentDidMount() {
+        let category = this.props.currentCategory;
+        if(category && !_.isEmpty(category))
+        {
+            this.setState({
+                id: category.id,
+                categoryName: category.categoryName,
+                categoryDescription: category.categoryDescription,
+                categoryOrdering: category.categoryOrdering,
+                status: category.status
+            })
+        }
     }
 
     toggle = () => {
@@ -44,11 +45,10 @@ class CreateCategoryModal extends Component {
             ...prevState
         })
     }
-
-    handleAddNewCategory = () => {
-        this.props.createNewCategoryFromReact(this.state);
-    }
-    // toggle={()=>{this.toggle()}}
+    
+    handleUpdateCategory = () => {
+        this.props.updateCategoryFromReact(this.state);       
+    }    
 
     render() {
         return (
@@ -59,11 +59,11 @@ class CreateCategoryModal extends Component {
                 size="lg"
                 centered
             >
-                <ModalHeader className='modal-category-header'>Create Category</ModalHeader>
+                <ModalHeader toggle={()=>{this.toggle()}}>Update Category</ModalHeader>
                 <ModalBody>
                     <div className="modal-category-body">
                         <div className="input-container">
-                            <label>Category Name <span class="required">*</span></label>
+                            <label>Category name: <span class="required">*</span></label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "categoryName")}}
@@ -71,7 +71,7 @@ class CreateCategoryModal extends Component {
                             />
                         </div>
                         <div className="input-container">
-                            <label>Category Description <span class="required">*</span></label>
+                            <label>Description: <span class="required">*</span></label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "categoryDescription")}}
@@ -79,7 +79,7 @@ class CreateCategoryModal extends Component {
                             />
                         </div>
                         <div className="input-container">
-                            <label>Category Ordering</label>
+                            <label>Ordering: </label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "categoryOrdering")}}
@@ -87,22 +87,22 @@ class CreateCategoryModal extends Component {
                             />
                         </div>
                         <div className="input-container">
-                            <label>Parent Id</label>
+                            <label>Status: <span class="required">*</span></label>
                             <input 
                                 type="text" 
-                                onChange={(event)=> {this.handleOnChangeInput(event, "parentId")}}
-                                value={this.state.parentId}
+                                onChange={(event)=> {this.handleOnChangeInput(event, "status")}}
+                                value={this.state.status}
                             />
                         </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
                     <Button 
-                        disabled={this.props.is}
                         color="primary" 
                         className="px-3" 
-                        onClick={()=>{this.handleAddNewCategory()}}>Create</Button>{' '}
+                        onClick={()=>{this.handleUpdateCategory()}}>Update</Button>{' '}
                     <Button color="secondary" className="px-3" onClick={()=>{this.toggle()}}>Cancel</Button>
+
                 </ModalFooter>
             </Modal>
         )
@@ -120,4 +120,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateCategoryModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateCategory);
