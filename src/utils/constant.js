@@ -6,7 +6,8 @@ export const path = {
     ABOUTPAGE: '/about',
     LOGIN: '/login',
     LOG_OUT: '/logout',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    PROFILE: '/profile'
 };
 
 export const cnpmConstant = {

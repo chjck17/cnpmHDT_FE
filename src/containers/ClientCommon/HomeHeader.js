@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class HomeHeader extends Component {
+    constructor(props){
+        super(props);
+        this.state = { 
+            
+        }
+    }
+
+    async componentDidMount() {
+    }
+
     render() {
         return (
             <header className="header_section">
@@ -21,25 +31,23 @@ class HomeHeader extends Component {
                             <div className="d-flex ml-auto flex-column flex-lg-row align-items-center">
                                 <ul className="navbar-nav  ">
                                     <li className="nav-item ">
-                                        <a className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></a>
+                                        <a className="nav-link" href="index.html">Giới thiệu <span className="sr-only">(current)</span></a>
                                     </li>
                                     <li className="nav-item active">
-                                        <a className="nav-link" href="about.html">About </a>
+                                        <a className="nav-link" href="about.html"> My Xe Máy </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="cycle.html"> Our cycles </a>
+                                        <a className="nav-link" href="cycle.html"> Xe máy </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="contact.html">Contact us</a>
+                                        <a className="nav-link" href="contact.html">Tin tức</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#"> Login </a>
+                                        {this.props.isLoggedIn ? <a className="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i></a> : <a className="nav-link" href="#"> Login </a>}
                                     </li>
+                                    
                                 </ul>
                                 <div className="quote_btn-container ">
-                                    <a href="" className="call_link">
-                                        <span> Call Now: </span>+01 1234567890
-                                    </a>
                                     <a href="" className="cart_link">
                                         <img src="assets/images/cart.png" alt="" />
                                         <span className="cart_number">0</span>

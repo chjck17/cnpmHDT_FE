@@ -17,6 +17,7 @@ import Header from './Header/Header';
 import System from '../routes/System';
 import HomePage from './HomePage/HomePage.js'
 import AboutPage from './AboutPage/AboutPage.js'
+import ProfilePage from './Profile/ProfilePage.js'
 import ContactPage from './ContactPage/ContactPage.js'
 import ProductDetailPage from './ProductDetailPage/ProductDetailPage.js'
 import ConfirmModal from '../components/ConfirmModal';
@@ -48,7 +49,6 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                    <ConfirmModal />
                         {/* {this.props.isLoggedIn && this.props.userInfo.kind == 1 &&  <Header />} */}
 
                         <span className="content-container">
@@ -58,6 +58,7 @@ class App extends Component {
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                 <Route path={path.ABOUTPAGE} component={AboutPage} />
+                                <Route path={path.PROFILE} exact component={ProfilePage} />
                                 <Route path={path.PRODUCTPAGE} component={ProductDetailPage} />
                                 <Route path={path.CONTACTPAGE} component={ContactPage} />
                             </Switch>
