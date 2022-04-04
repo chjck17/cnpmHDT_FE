@@ -10,6 +10,7 @@ class ModalCustomer extends Component {
         super(props);
         this.state = {
             customerFullName: '',
+            customerUsername: '',
             customerEmail: '',
             customerAddress: '',
             customerPhone: '',
@@ -36,6 +37,7 @@ class ModalCustomer extends Component {
             //reset state
             this.setState({
                 customerFullName: '',
+                customerUserName: '',
                 customerEmail: '',
                 customerAddress: '',
                 customerPhone: '',
@@ -76,8 +78,7 @@ class ModalCustomer extends Component {
 
     checkValideInput = () => {
         let isValid = true;
-        let arrInput = ['customerFullName','customerEmail','customerPhone','birthday','gender','isLoyalty'];
-        
+        let arrInput = ['customerFullName','customerEmail','customerPhone','birthday','gender','isLoyalty','status','customerUsername'];
         for(let i = 0; i < arrInput.length; i++){
             if(!this.state[arrInput[i]]){
                 isValid = false;
@@ -109,7 +110,7 @@ class ModalCustomer extends Component {
                 <ModalBody>
                     <div className="modal-customer-body">
                         <div className="input-container">
-                            <label>Name</label>
+                            <label>Full Name</label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "customerFullName")}}
@@ -146,6 +147,14 @@ class ModalCustomer extends Component {
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "birthday")}}
                                 value={this.state.birthday}
+                            />
+                        </div>
+                        <div className="input-container">
+                            <label>User Name</label>
+                            <input 
+                                type="text" 
+                                onChange={(event)=> {this.handleOnChangeInput(event, "customerUsername")}}
+                                value={this.state.customerUsername}
                             />
                         </div>
                         <div className="input-container">

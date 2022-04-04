@@ -32,6 +32,7 @@
                 "header": "System Administrator",
                 "user-manage": "User manage",
                 "customer": "Customer manage",
+                "province": "Province manage",
                 "product-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
@@ -68,6 +69,9 @@
             "sure-delete-user": "Are you sure to delete this user?"
         },
         "customer-manage":{
+
+        },
+        "province-manage":{
 
         },
         "product-manage": {
