@@ -11,10 +11,11 @@ import SubcribeSection from '../Section/SubcribeSection.js';
 import InfoSection from '../Section/InfoSection.js';
 class HomePage extends Component {
     render() {
+        const { isLoggedIn } = this.props;
         return (
             <div>
                 <div className='hero_area'>
-                    <HomeHeader />                   
+                    <HomeHeader isLoggedIn={isLoggedIn}/>                   
                     <SliderSection />
                 </div>
                 <AboutSection />
@@ -32,6 +33,7 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
     return {
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 

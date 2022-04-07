@@ -43,7 +43,7 @@ class HomeHeader extends Component {
                                         <a className="nav-link" href="contact.html">Tin tức</a>
                                     </li>
                                     <li className="nav-item">
-                                        {this.props.isLoggedIn ? <a className="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i></a> : <a className="nav-link" href="#"> Login </a>}
+                                        {this.props.isLoggedIn ? <a className="nav-link" href="/profile"><i class="fa fa-user" aria-hidden="true"></i></a> : <a className="nav-link" href="/login"> Login </a>}
                                     </li>
                                     
                                 </ul>
@@ -68,7 +68,6 @@ class HomeHeader extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
     };
 };
 

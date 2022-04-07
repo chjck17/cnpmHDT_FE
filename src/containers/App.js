@@ -6,7 +6,7 @@ import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 
 
-import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
+import { userIsAuthenticated, userIsAuthorized, userIsNotAuthenticated } from '../hoc/authentication';
 
 import { path } from '../utils'
 
@@ -49,16 +49,14 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                        {/* {this.props.isLoggedIn && this.props.userInfo.kind == 1 &&  <Header />} */}
-
                         <span className="content-container">
                             <Switch>
                                 <Route path={path.HOME} exact component={(Home)} />
-                                <Route path={path.HOMEPAGE} component={HomePage} />
+                                <Route path={path.HOMEPAGE} exact component={HomePage} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                 <Route path={path.ABOUTPAGE} component={AboutPage} />
-                                <Route path={path.PROFILE} exact component={ProfilePage} />
+                                <Route path={path.PROFILE} exact component={userIsAuthenticated(ProfilePage)} />
                                 <Route path={path.PRODUCTPAGE} component={ProductDetailPage} />
                                 <Route path={path.CONTACTPAGE} component={ContactPage} />
                             </Switch>

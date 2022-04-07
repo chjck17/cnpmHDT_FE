@@ -6,27 +6,33 @@ import CustomerManage from '../containers/System/Customer/CustomerManage';
 import ProvinceManage from '../containers/System/Province/ProvinceManage';
 import ProductManage from '../containers/System/ProductManage';
 import NewsManage from '../containers/System/News/NewsManage';
+import ErrorPage from '../containers/ErrorPage/ErrorPage';
 import CategoryManage from '../containers/System/Category/CategoryManage.js';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import Header from '../containers/Header/Header';
 class System extends Component {
     render() {
-        const { systemMenuPath } = this.props;
+        const { systemMenuPath, userInfo } = this.props;
         return (
             <div className="system-container">
-                <div className="system-list">
-                    <Header />
-                    <Switch>
-                        <Route path="/system/user-manage" component={UserManage} />
-                        <Route path="/system/news-manage" component={NewsManage} />
-                        <Route path="/system/category-manage" component={CategoryManage} />
-                        <Route path="/system/customer-manage" component={CustomerManage} />
-                        <Route path="/system/province-manage" component={ProvinceManage} />
-                        <Route path="/system/product-manage" component={ProductManage} />
-                        <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
-                        <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
-                    </Switch>
-                </div>
+                {userInfo.kind === 1 &&
+                    <div className="system-list">
+                        <Header />
+                        <Switch>
+                            <Route path="/system/user-manage" component={UserManage} />
+                            <Route path="/system/news-manage" component={NewsManage} />
+                            <Route path="/system/category-manage" component={CategoryManage} />
+                            <Route path="/system/customer-manage" component={CustomerManage} />
+                            <Route path="/system/province-manage" component={ProvinceManage} />
+                            <Route path="/system/product-manage" component={ProductManage} />
+                            <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
+                            <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
+                        </Switch>
+                    </div>
+                }
+                {
+                    userInfo.kind != 1 && <ErrorPage/>
+                }
             </div>
         );
     }
@@ -34,7 +40,8 @@ class System extends Component {
 
 const mapStateToProps = state => {
     return {
-        systemMenuPath: state.app.systemMenuPath
+        systemMenuPath: state.app.systemMenuPath,
+        userInfo: state.user.userInfo
     };
 };
 

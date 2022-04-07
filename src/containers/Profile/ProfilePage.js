@@ -10,9 +10,10 @@ class ProfilePage extends Component {
         super(props);   
     }
     render() {
+        const { isLoggedIn } = this.props;
         return (
             <div>
-                <HomeHeader/>
+                <HomeHeader isLoggedIn={isLoggedIn}/>
                 <BodyProfile/> 
                 <Footer/>
             </div>
@@ -23,7 +24,7 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
