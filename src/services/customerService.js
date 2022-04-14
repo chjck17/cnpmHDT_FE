@@ -37,4 +37,8 @@ const createNewCustomerService = (data) => {
 const getProfile = () => {
   return axios.get('/v1/customer/profile', authHeader())
 }
-export {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService, getProfile}
+
+const updateProfile = (data) => {
+  return axios.put('/v1/customer/update-profile', data, authHeader())
+}
+export {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, updateCustomerService, getProfile, updateProfile}

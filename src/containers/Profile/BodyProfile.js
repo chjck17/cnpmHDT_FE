@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProfile } from '../../services/customerService'
+import { getProfile, updateProfile } from '../../services/customerService'
 import moment from 'moment';
 import './ProfilePage.scss';
 class BodyProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            customerInfo: {}
+            fullName: '',
+            email: '',
+            username: '',
+            phone: '',
+            genderCustomer: '',
+            addressCustomer: '',
+            birthdayCustomer: '',
+            loyaltyLevelCustomer: '',
+            messageUpdate: ''
         }
     }
 
@@ -19,13 +27,45 @@ class BodyProfile extends Component {
         let response = await getProfile();
         if (response && response.result) {
             this.setState({
-                customerInfo: response.data
+                fullName: response.data.fullName,
+                email: response.data.email,
+                phone: response.data.phone,
+                genderCustomer: response.data.genderCustomer,
+                addressCustomer: response.data.addressCustomer,
+                birthdayCustomer: response.data.birthdayCustomer,
+                loyaltyLevelCustomer: response.data.loyaltyLevelCustomer,
+                username: response.data.username
             })
         }
     }
 
-    handleOnChange = (e) => {
+    handleOnChange = (event, index) => {
+        let prevState = {...this.state};
+        prevState[index] = event.target.value;
+        this.setState({
+            ...prevState
+        })
+    }
 
+    handleUpdateProfile = async () => {
+        var data = {
+            customerEmail: this.state.email,
+            customerFullName: this.state.fullName,
+            address: this.state.addressCustomer,
+            birthday: this.state.birthdayCustomer,
+            gender: this.state.genderCustomer
+        }
+        let response = await updateProfile(data)
+        if(response && response.result){
+            await this.getCustomerInfo();
+            this.setState({
+                messageUpdate: 'Cập nhật dữ liệu thành công'
+            })
+        }else{
+            this.setState({
+                messageUpdate: 'Cập nhật dữ liệu KHÔNG thành công'
+            })
+        }
     }
 
     render() {
@@ -42,17 +82,82 @@ class BodyProfile extends Component {
                                 <h4 class="text-right">THÔNG TIN KHÁCH HÀNG</h4>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-md-12"><label class="labels">Họ tên</label><input type="text" class="form-control" value={this.state.customerInfo.fullName} /></div>
+                                <div class="col-md-12"><label class="labels">Họ tên</label>
+                                    <input 
+                                        type="text"
+                                        onChange={(event) => {this.handleOnChange(event,"fullName")}}  
+                                        class="form-control" 
+                                        value={this.state.fullName} 
+                                    /></div>
                             </div>
+                                
                             <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Số điện thoại</label><input type="text" class="form-control" onChange={this.handleOnChange()} value={this.state.customerInfo.phone} /></div>
-                                <div class="col-md-12"><label class="labels">Địa chỉ</label><input type="text" class="form-control" value={this.state.customerInfo.addressCustomer} /></div>
-                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" value={this.state.customerInfo.email} /></div>
-                                <div class="col-md-12"><label class="labels">Giới tính</label><input type="text" class="form-control" value={this.state.customerInfo.genderCustomer} /></div>
-                                <div class="col-md-12"><label class="labels">Ngày sinh</label><input type="date" class="form-control" value={moment(this.state.customerInfo.birthdayCustomer).format('YYYY-MM-DD')} /></div>
-                                <div class="col-md-12"><label class="labels">Cấp độ</label><input disabled type="text" class="form-control" value={this.state.customerInfo.loyaltyLevelCustomer} /></div>
+                                <div className="col-md-12"><label class="labels">Username</label>
+                                    <input 
+                                        type="text"
+                                        onChange={(event) => {this.handleOnChange(event,"username")}} 
+                                        class="form-control" 
+                                        disabled = {this.state.username ? true : false} 
+                                        value={this.state.username} 
+                                /></div>
+                                <div class="col-md-12"><label class="labels">Số điện thoại</label>
+                                    <input 
+                                        type="text"
+                                        onChange={(event) => {this.handleOnChange(event,"phone")}}  
+                                        class="form-control" 
+                                        disabled = {this.state.phone ? true : false} 
+                                        value={this.state.phone} 
+                                /></div>
+                                <div class="col-md-12"><label class="labels">Địa chỉ</label>
+                                    <input 
+                                        type="text"
+                                        onChange={(event) => {this.handleOnChange(event,"addressCustomer")}}  
+                                        class="form-control" 
+                                        value={this.state.addressCustomer} 
+                                /></div>
+                                <div class="col-md-12"><label class="labels">Email</label>
+                                    <input 
+                                        type="text"
+                                        onChange={(event) => {this.handleOnChange(event,"email")}} 
+                                        disabled = {this.state.username ? true : false} 
+                                        class="form-control" 
+                                        value={this.state.email} 
+                                /></div>
+                                <div class="col-md-12"><label class="labels">Giới tính</label><br/>
+                                        <input 
+                                            type="radio" 
+                                            value= {1}
+                                            onChange={(event) => {this.handleOnChange(event,"genderCustomer")}}
+                                            checked={this.state.genderCustomer == 1}
+                                             /> Male
+                                        <input 
+                                            type="radio" 
+                                            value={2}
+                                            onChange={(event) => {this.handleOnChange(event,"genderCustomer")}}
+                                            checked={this.state.genderCustomer == 2}
+                                             /> Female
+                                </div>
+                                <div class="col-md-12"><label class="labels">Ngày sinh</label>
+                                    <input 
+                                        type="date"
+                                        onChange={(event) => {this.handleOnChange(event,"birthdayCustomer")}} 
+                                        class="form-control" 
+                                        value={moment(this.state.birthdayCustomer).format('YYYY-MM-DD')} 
+                                /></div>
+                                <div class="col-md-12"><label class="labels">Cấp độ</label>
+                                    <input 
+                                        disabled 
+                                        type="text" 
+                                        class="form-control" 
+                                        value={this.state.loyaltyLevelCustomer} 
+                                /></div>
                             </div>
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                            <div className='message-update-profile'>{this.state.messageUpdate}</div>
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" 
+                                    type="button"
+                                    onClick={() => {this.handleUpdateProfile()}}
+                            >Save Profile</button></div>
                         </div>
                     </div>
                 </div>
