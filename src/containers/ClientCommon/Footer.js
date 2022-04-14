@@ -4,7 +4,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className='container-fluid footer_section'>
+            <footer className='footer container-fluid footer_section'>
                 <p>
                     &copy; 2019 All Rights Reserved By
                     <a href="https://html.design/">Free Html Templates</a>
