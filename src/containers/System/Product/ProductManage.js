@@ -145,7 +145,6 @@ class ProductManage extends Component {
                         isEdit={this.state.isEditModalProduct}
                         toggleFromParent={this.toggleProductModal}
                         createNewProduct={this.createNewProduct}
-                        test={'abc'}
                     />
                     {this.state.isOpenEditModalProduct&&
                     <ModalEditProduct
