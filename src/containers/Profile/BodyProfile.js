@@ -127,12 +127,14 @@ class BodyProfile extends Component {
                                         <input 
                                             type="radio" 
                                             value= {1}
+                                            className="gender-profile"
                                             onChange={(event) => {this.handleOnChange(event,"genderCustomer")}}
                                             checked={this.state.genderCustomer == 1}
                                              /> Male
                                         <input 
                                             type="radio" 
                                             value={2}
+                                            className="gender-profile female-radio"
                                             onChange={(event) => {this.handleOnChange(event,"genderCustomer")}}
                                             checked={this.state.genderCustomer == 2}
                                              /> Female
@@ -157,7 +159,7 @@ class BodyProfile extends Component {
                                 <button class="btn btn-primary profile-button" 
                                     type="button"
                                     onClick={() => {this.handleUpdateProfile()}}
-                            >Save Profile</button></div>
+                            >Update Profile</button></div>
                         </div>
                     </div>
                 </div>

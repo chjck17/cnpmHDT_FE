@@ -40,7 +40,6 @@ class Login extends Component {
         })
         let response = await handleLoginApi(this.state.username,this.state.password)
         if(response.data && response.data.token){
-            // console.log(response.data)
             localStorage.setItem('token',response.data.token)
             this.props.userLoginSuccess(response.data)
         }

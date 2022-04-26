@@ -2,6 +2,8 @@ export const path = {
     HOME: '/',
     HOMEPAGE: '/home',
     CONTACTPAGE: '/contact',
+    NEWSPAGE: '/news',
+    NEWSDETAILPAGE: '/detail/:id',
     PRODUCTPAGE: '/product',
     ABOUTPAGE: '/about',
     LOGIN: '/login',

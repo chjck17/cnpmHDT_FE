@@ -17,7 +17,7 @@ class HomeHeader extends Component {
             <header className="header_section">
                 <div className="container-fluid">
                     <nav className="navbar navbar-expand-lg custom_nav-container ">
-                        <a className="navbar-brand" href="index.html">
+                        <a className="navbar-brand" href="/home">
                             <img src="assets/images/logo.png" alt="" />
                             <span>
                                 Jetcycle
@@ -40,7 +40,7 @@ class HomeHeader extends Component {
                                         <a className="nav-link" href="cycle.html"> Xe máy </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="contact.html">Tin tức</a>
+                                        <a className="nav-link" href="/news">Tin tức</a>
                                     </li>
                                     <li className="nav-item">
                                         {this.props.isLoggedIn ? <a className="nav-link" href="/profile"><i class="fa fa-user" aria-hidden="true"></i></a> : <a className="nav-link" href="/login"> Login </a>}
