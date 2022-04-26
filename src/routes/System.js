@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
 import CustomerManage from '../containers/System/Customer/CustomerManage';
 import ProvinceManage from '../containers/System/Province/ProvinceManage';
-import ProductManage from '../containers/System/ProductManage';
+import ProductManage from '../containers/System/Product/ProductManage';
 import NewsManage from '../containers/System/News/NewsManage';
 import ErrorPage from '../containers/ErrorPage/ErrorPage';
 import CategoryManage from '../containers/System/Category/CategoryManage.js';

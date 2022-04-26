@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './ProductManage.scss'
-import {getAllProduct,deleteProduct, getProduct, createNewProductService,editProductService} from '../../services/productService';
+import {getAllProduct,deleteProduct, getProduct, createNewProductService,editProductService} from '../../../services/productService';
 import ModalProduct from './ModalProduct';
 import ModalEditProduct from './ModalEditProduct';
 class ProductManage extends Component {
@@ -138,7 +138,7 @@ class ProductManage extends Component {
             console.log('check render 1', this.state)
             let arrProduct =this.state.arrProduct.data
             return (
-                <div className="Products-container">
+                <div className="users-container">
                     <ModalProduct
                         isOpen={this.state.isOpenModalProduct}
                         isCreate={this.isCreateModalProduct}
@@ -160,12 +160,12 @@ class ProductManage extends Component {
                     <div className="title text-center">Manage Product</div>
                     <div className="mx-1">
                         <button className="btn btn-primary px-3" onClick={()=>this.handleAddNewProduct()}>
-                            <i className="fas fa-user-plus px-1"></i>
+                            <i className="fa fa-plus"></i>
                             Add New Product
                         </button>
                     </div>
-                    <div className="products-table mt-3 mx-1">
-                        <table id="products">
+                    <div className="customers-table mt-3 mx-1">
+                        <table id="customers">
                             <tbody>
                                 <tr>
                                     <th>productId</th>
@@ -190,8 +190,8 @@ class ProductManage extends Component {
                                                     <td>{ss.productShortDescription}</td>
                                                     <td>{ss.productSaleOff}</td>
                                                 <td>
-                                                    <button className="btn-actions" onClick={()=>this.handleEditProduct(ss)}><i className="fas fa-edit"></i></button>                                              
-                                                    <button className="btn-actions" onClick={()=>this.handleDeleteProduct(ss)}><i className="fas fa-trash-alt"></i></button>
+                                                    <button className="btn-actions" onClick={()=>this.handleEditProduct(ss)}><i className="fa fa-pencil-square-o"></i></button>                                              
+                                                    <button className="btn-actions" onClick={()=>this.handleDeleteProduct(ss)}><i className="fa fa-trash-o"></i></button>
                                                 </td>
                                             </tr>
                                         )
