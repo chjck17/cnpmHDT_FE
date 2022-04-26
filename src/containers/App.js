@@ -17,6 +17,8 @@ import Header from './Header/Header';
 import System from '../routes/System';
 import HomePage from './HomePage/HomePage.js'
 import AboutPage from './AboutPage/AboutPage.js'
+import NewsClientPage from './News/NewsClientPage.js'
+import NewsDetailPage from './News/NewsDetailPage.js'
 import ProfilePage from './Profile/ProfilePage.js'
 import ContactPage from './ContactPage/ContactPage.js'
 import ProductDetailPage from './ProductDetailPage/ProductDetailPage.js'
@@ -51,11 +53,13 @@ class App extends Component {
                     <div className="main-container">
                         <span className="content-container">
                             <Switch>
+                                <Route exact path={path.NEWSDETAILPAGE} component={(NewsDetailPage)} />
                                 <Route path={path.HOME} exact component={(Home)} />
                                 <Route path={path.HOMEPAGE} exact component={HomePage} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                 <Route path={path.ABOUTPAGE} component={AboutPage} />
+                                <Route path={path.NEWSPAGE} component={NewsClientPage} />
                                 <Route path={path.PROFILE} exact component={userIsAuthenticated(ProfilePage)} />
                                 <Route path={path.PRODUCTPAGE} component={ProductDetailPage} />
                                 <Route path={path.CONTACTPAGE} component={ContactPage} />

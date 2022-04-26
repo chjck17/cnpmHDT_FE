@@ -9,11 +9,16 @@
     border: none;
 }
 
-
+.female-radio{
+    margin-left: 15px;
+}
 .profile-button:hover {
     background: #682773
 }
-
+.message-update-profile{
+    margin-top: 30px;
+    color: red;
+}
 .profile-button:focus {
     // background: #682773;
     box-shadow: none

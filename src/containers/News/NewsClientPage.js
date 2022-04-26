@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BodyProfile from './BodyProfile.js'
+
+import NewsPageBody from './NewsPageBody.js'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 
-class ProfilePage extends Component {
+class NewsClientPage extends Component {
     constructor(props) {
         super(props);   
     }
     render() {
-        const { isLoggedIn } = this.props;
         return (
             <div>
-                <HomeHeader isLoggedIn={isLoggedIn}/>
-                <BodyProfile/> 
+                <HomeHeader/>
+                <NewsPageBody/> 
                 <Footer/>
             </div>
         );
@@ -23,7 +23,6 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
     };
 };
 
@@ -32,4 +31,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsClientPage);
