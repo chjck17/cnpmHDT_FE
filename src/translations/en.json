@@ -33,6 +33,7 @@
                 "user-manage": "User manage",
                 "customer": "Customer manage",
                 "province": "Province manage",
+                "oders-detail-manage": "Oders Detail manage",
                 "product-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
@@ -71,8 +72,12 @@
         "customer-manage":{
 
         },
+
         "province-manage":{
 
+        },
+        "--manage":{
+            
         },
         "product-manage": {
             "fail-to-load-foprtype": "Fail to load packages list",

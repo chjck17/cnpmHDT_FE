@@ -5,30 +5,27 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter} from "../../../utils/emitter";
 import _ from 'lodash';
 
-class ModalUpdateProvince extends Component {
+class ModalUpdateOrdersDetail extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             id:'',
-            name: '',
-            parentId: '',
-            provinceKind: '',
-            kind: '',
-            status: '',
+            price: '',
+            amount: '',
+            productId: '',
+            ordersId: '',
         }
     }
 
-
-    
     componentDidMount() {
         let province = this.props.currentProvince;
         if(province && !_.isEmpty(province))
         {
             this.setState({
                 id: province.id,
-                name: province.name,
-                status: province.status,
+                price: province.name,
+                amount: province.status,
             })
         }
 
@@ -133,4 +130,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateProvince);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateOrdersDetail);

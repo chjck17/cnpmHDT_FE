@@ -19,7 +19,7 @@ const getAllCustomers = () => {
 }
 
 const getCustomer = (customerId) => {
-  return axios.get('/v1/customer/get/{customerId}',authHeader)
+  return axios.get(`/v1/customer/get/${customerId}`,authHeader)
 }
 
 const deleteCustomer = (customerId) => {

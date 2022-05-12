@@ -25,6 +25,11 @@ const editProductService = (data) => {
 const getProduct = (ProductId) => {
     return axios.get(`/v1/product/get/${ProductId}`,authHeader())
   }
+
+const getProductByCategory = (id) => {
+  return axios.get(`/v1/product/products-by-category/${id}`,authHeader())
+}
+
 const deleteProduct = (ProductId) => {
     return axios.delete(`/v1/product/delete/${ProductId}`,authHeader())
   }
@@ -32,4 +37,4 @@ const createNewProductService = (data) => {
     return axios.post('/v1/product/create',data,authHeader())
   }
 
-export {getAllProduct,deleteProduct, getProduct, createNewProductService,editProductService}
+export {getAllProduct, deleteProduct, getProduct, createNewProductService, editProductService, getProductByCategory}

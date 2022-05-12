@@ -21,7 +21,8 @@ import NewsClientPage from './News/NewsClientPage.js'
 import NewsDetailPage from './News/NewsDetailPage.js'
 import ProfilePage from './Profile/ProfilePage.js'
 import ContactPage from './ContactPage/ContactPage.js'
-import ProductDetailPage from './ProductDetailPage/ProductDetailPage.js'
+import ProductClientPage from './Product/ProductClientPage.js'
+import ProductDetailPage from './Product/ProductDetailPage.js'
 import ConfirmModal from '../components/ConfirmModal';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
@@ -61,7 +62,8 @@ class App extends Component {
                                 <Route path={path.ABOUTPAGE} component={AboutPage} />
                                 <Route path={path.NEWSPAGE} component={NewsClientPage} />
                                 <Route path={path.PROFILE} exact component={userIsAuthenticated(ProfilePage)} />
-                                <Route path={path.PRODUCTPAGE} component={ProductDetailPage} />
+                                <Route path={path.PRODUCTPAGE} component={ProductClientPage} />
+                                <Route path={path.PRODUCDETAILTPAGE} component={ProductDetailPage} />
                                 <Route path={path.CONTACTPAGE} component={ContactPage} />
                             </Switch>
                         </span>

@@ -37,7 +37,7 @@ class HomeHeader extends Component {
                                         <a className="nav-link" href="about.html"> My Xe Máy </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="cycle.html"> Xe máy </a>
+                                        <a className="nav-link" href="product"> Xe máy </a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/news">Tin tức</a>
