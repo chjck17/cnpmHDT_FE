@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ProductPageBody from './ProductPageBody.js'
+import BuyProductPageBody from './BuyProductPageBody.js'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 
@@ -16,7 +16,7 @@ class ProductClientPage extends Component {
         return (
             <div>
                 <HomeHeader isLoggedIn={isLoggedIn}/>
-                <ProductPageBody/>
+                <BuyProductPageBody/>
                 <Footer/>
             </div>
         );

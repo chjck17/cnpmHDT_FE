@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import { connect } from 'react-redux';
-import { getOneNews } from '../../services/newsService'
-import './NewsPage.scss'
+import { isPropertyAccessExpression } from 'typescript';
+import {getOneNews} from '../../services/newsService';
+// import handleAddToCart from '../AddToCart/AddToCart';
 class NewsDetailPageBody extends Component {
     constructor(props) {
-        super(props);
+        super(props);   
         this.state = {
             id: '',
             title: '',
@@ -14,27 +16,28 @@ class NewsDetailPageBody extends Component {
             createdDate: ''
         }
     }
-
+    // componentDidMount() {
+    //     handleAddToCart()
+    // }
     async componentDidMount() {
         await this.getOneNewsFromReact()
+        // handleAddToCart()
     }
 
     getOneNewsFromReact = async () => {
-        let response = await getOneNews(this.props.id);
-        if (response && response.result) {
-            this.setState({
-                id: response.data.id,
-                title: response.data.title,
-                content: response.data.content,
-                description: response.data.description,
-                banner: response.data.banner,
-                createdDate: response.data.createdDate
-            })
-        }
+        let response = await getOneNews(this.props.id)
+        this.setState({
+            id: response.data.id,
+            title: response.data.title,
+            content: response.data.content,
+            description: response.data.description,
+            banner: response.data.banner,
+            createdDate: response.data.createdDate
+        })
+        console.log("check",response)
     }
 
     render() {
-        // const id  = this.props.id;
         return (
             <div>
                 <div id="content_listnew" class="floating-bar">
@@ -56,7 +59,9 @@ class NewsDetailPageBody extends Component {
             </div>
         );
     }
+
 }
+
 
 const mapStateToProps = state => {
     return {

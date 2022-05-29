@@ -4,15 +4,48 @@ import { connect } from 'react-redux';
 import './ProductPage.scss'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
+import {getProduct} from '../../services/productService';
+import handleAddToCart from '../AddToCart/AddToCart';
 
 class ProductPageBodyList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             productList: [],
+            total: ''
         }
+        this.cart = []
     }
 
+    componentDidMount(){
+    //     let curent=this;
+    handleAddToCart() 
+        // productList && productList.map((item,index)=>{
+           
+        // })
+    //     curent.setState({
+    //         total: localStorage.getItem('total')
+    //     })
+    }
+    // handleAddToCart = async (id)=>{
+    //     handleAddToCart(id)
+    //     this.props.handleAddToCartS()
+    // }
+    // handleAddToCart = async (id) => {
+    //     let cart = this.cart
+    //     let storage = localStorage.getItem('cart')
+    //     if(storage){
+    //         cart=JSON.parse(storage)
+    //     }
+    //     let product = await getProduct(id)
+    //     let item = cart.find(c=>c.product.data.productId==id)
+    //     if(item){
+    //         item.quantity+=1
+    //     }else{
+    //         cart.push({product,quantity:1})
+    //     }
+    //     localStorage.setItem('cart',JSON.stringify(cart))
+    // }
     render() {
         let productList = this.props.productList
         return (
@@ -61,9 +94,8 @@ class ProductPageBodyList extends Component {
                                             <a href={`/product-detail?id=${item.productId}`} className="btn btn-primary btn-block">
                                                 Xem chi tiết
                                             </a>
-                                            <a href="#" className="btn btn-primary btn-block">
-                                                <i className="fa fa-cart-plus" aria-hidden="true"></i>
-                                                <span> Thêm vào giỏ hàng</span>
+                                            <a href={`/buyproduct${item.productId}`} className="btn btn-primary btn-block" onClick={()=>handleAddToCart(item.productId)}>
+                                                Mua ngay
                                             </a>
                                         </div>
                                     </p>
@@ -76,8 +108,8 @@ class ProductPageBodyList extends Component {
             </main>
         );
     }
-
 }
+
 const mapStateToProps = state => {
     return {
     };

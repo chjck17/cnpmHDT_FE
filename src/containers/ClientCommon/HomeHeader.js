@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
+import handleAddToCart, {getCartTotal} from '../AddToCart/AddToCart';
 class HomeHeader extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            
+            cartTotal:''
         }
+        //const [cart, setCart] = useState([]);
+        //this.total=0;
+        // useEffect(()=>{
+        //     localStorage.setItem('cart',JSON.stringify(cart))
+        // },[cart]);
+        // const getCartTotal = () =>{
+        //     return cart.reduce((sum, {quantity}) => sum + quantity,0)
+        // }
     }
-
-    async componentDidMount() {
-    }
-
+    
     render() {
         return (
             <header className="header_section">
@@ -48,10 +53,10 @@ class HomeHeader extends Component {
                                     
                                 </ul>
                                 <div className="quote_btn-container ">
-                                    <a href="" className="cart_link">
+                                    {/* <a href="" className="cart_link">
                                         <img src="assets/images/cart.png" alt="" />
-                                        <span className="cart_number">0</span>
-                                    </a>
+                                        <span className="cart_number">{localStorage.getItem('total')}</span>
+                                    </a> */}
                                     <form className="form-inline ">
                                         <button className="btn  nav_search-btn" type="submit"></button>
                                     </form>
@@ -63,7 +68,6 @@ class HomeHeader extends Component {
             </header>
         );
     }
-
 }
 
 const mapStateToProps = state => {

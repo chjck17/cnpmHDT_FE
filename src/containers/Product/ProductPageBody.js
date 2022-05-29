@@ -89,7 +89,9 @@ class ProductPageBody extends Component {
                                     </article>
                                 </div> 
                             </aside> 
-                        <ProductPageBodyList productList={productList}/>
+                        <ProductPageBodyList 
+                            productList={productList}
+                        />
                     </div>
                 </div> 
                 </section>

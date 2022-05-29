@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { isPropertyAccessExpression } from 'typescript';
 import {getAllProduct,deleteProduct, getProduct, createNewProductService, editProductService, getProductByCategory} from '../../services/productService';
-
+// import handleAddToCart from '../AddToCart/AddToCart';
 class ProductDetailPageBody extends Component {
     constructor(props) {
         super(props);   
@@ -15,10 +15,12 @@ class ProductDetailPageBody extends Component {
             productSaleOff: '',
         }
     }
-
+    // componentDidMount() {
+    //     handleAddToCart()
+    // }
     async componentDidMount() {
-        await this.getOneProductFromReact();
-
+        await this.getOneProductFromReact()
+        // handleAddToCart()
     }
 
     getOneProductFromReact = async () => {
@@ -72,7 +74,7 @@ class ProductDetailPageBody extends Component {
                             
                                         <div className="mb-3">
                                             <h6>{this.state.productDescription}</h6>
-                                            <h7>Đã bán: {this.state.productSaleOff}</h7>
+                                            <h7>SaleOff: {this.state.productSaleOff}%</h7>
                                             {/* <ul className="list-dots mb-0">
                                                 <li>Made in Russia</li>
                                                 <li>Wolf leather </li>
@@ -110,10 +112,10 @@ class ProductDetailPageBody extends Component {
                 
                                         <div className="mb-4">
                                             <a href="#" className="btn btn-primary btn-block">  Mua ngay  </a>
-                                            <a href="#" className="btn btn-primary btn-block">
+                                            {/* <button className="btn btn-primary btn-block"  >
                                                 <i className="fa fa-cart-plus" aria-hidden="true"></i>
-                                                <span> Thêm vào giỏ hàng</span>
-                                            </a>
+                                                <span> Mua </span>
+                                            </button> */}
                                         </div>
                                         
                                     </article> 

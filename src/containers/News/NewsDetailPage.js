@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 import NewsDetailPageBody from './NewsDetailPageBody.js';
@@ -8,13 +7,15 @@ import NewsDetailPageBody from './NewsDetailPageBody.js';
 class NewsDetailPage extends Component {
     constructor(props) {
         super(props);   
+        this.id=''  
     }
     render() {
-        const { id } = this.props.match.params.id;
+        const value = this.props.match.params.id;
+        let id = value
         return (
             <div>
                 <HomeHeader/>
-                <NewsDetailPageBody id = {this.id}/> 
+                <NewsDetailPageBody id={id}/>
                 <Footer/>
             </div>
         );

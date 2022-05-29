@@ -19,17 +19,16 @@ class ModalUpdateOrdersDetail extends Component {
     }
 
     componentDidMount() {
-        let province = this.props.currentProvince;
-        if(province && !_.isEmpty(province))
+        let ordersDetail = this.props.currentProvince;
+        if (ordersDetail && !_.isEmpty(ordersDetail))
         {
             this.setState({
-                id: province.id,
-                price: province.name,
-                amount: province.status,
+                id: ordersDetail.id,
+                price: ordersDetail.price,
+                amount: ordersDetail.amount,
             })
         }
-
-        console.log('check: ',this.props.currentProvince)
+        //console.log('check: ',this.props.currentOrdersDetail)
     }
 
     toggle = () => {
@@ -81,13 +80,13 @@ class ModalUpdateOrdersDetail extends Component {
             <Modal                 
                 isOpen={this.props.isOpen}
                 toggle={()=>{this.toggle()}} 
-                className={'modal-province-container'}
+                className={'modal ordersDetail-container'}
                 size="lg"
                 centered
             >
                 <ModalHeader toggle={()=>{this.toggle()}}>Update Province</ModalHeader>
                 <ModalBody>
-                <div className="modal-province-body">
+                <div className="modal ordersDetail-body">
                         <div className="input-container">
                             <label>Name</label>
                             <input 

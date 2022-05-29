@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import NewsPageBody from './NewsPageBody.js'
+import NewsPageBody from './NewsPageBody'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 
