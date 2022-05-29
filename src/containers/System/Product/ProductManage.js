@@ -5,6 +5,7 @@ import './ProductManage.scss'
 import {getAllProduct,deleteProduct, getProduct, createNewProductService,editProductService} from '../../../services/productService';
 import ModalProduct from './ModalProduct';
 import ModalEditProduct from './ModalEditProduct';
+import ModalOrdersDetail from '../Orders/ModalOrdersDetail';
 class ProductManage extends Component {
 // check hàm contructor 
 // muốn khai báo 1 đối tượng cần tạo đầu tiên mà nó là contructor
@@ -46,7 +47,7 @@ class ProductManage extends Component {
             this.setState({
                 arrProduct: response.data
             })
-            console.log('eric check map ', response)
+            console.log('eric check map ', response.data)
     }
     handleAddNewProduct = () =>{
         this.setState ({
@@ -73,7 +74,6 @@ class ProductManage extends Component {
     }
     toggleEditProductModal = () =>{
         this.setState ({
-        
             isOpenEditModalProduct: !this.state.isOpenEditModalProduct,
         })
     }
@@ -132,7 +132,7 @@ class ProductManage extends Component {
             }catch(e){
                 console.log(e)
             }
-            window.location.reload();
+           //window.location.reload();
         }
         render() {
             console.log('check render 1', this.state)
@@ -148,7 +148,7 @@ class ProductManage extends Component {
                         test={'abc'}
                     />
                     {this.state.isOpenEditModalProduct&&
-                    <ModalEditProduct
+                    <ModalOrdersDetail
                         isOpen={this.state.isOpenEditModalProduct}
                         isCreate={this.isCreateModalProduct}
                         isEdit={this.state.isEditModalProduct}

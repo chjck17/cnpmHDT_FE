@@ -16,7 +16,7 @@ class ModalProduct extends Component {
             productShortDescription: '',
             productCategoryId: '',
             productSaleOff: '',
-          
+            
         }
     }
 
@@ -62,7 +62,8 @@ class ModalProduct extends Component {
         return isValid;
     }
     handleAddNewProduct = () => {
-        window.location.reload();
+        console.log('cai them ne DUYYYYYYYYYYYYYYY:',this.state)
+        //window.location.reload();
         let isValid = this.checkValideInput();
         if(isValid === true){
             //call api create modal

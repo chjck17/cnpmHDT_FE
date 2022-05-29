@@ -34,6 +34,7 @@
                 "customer": "Customer manage",
                 "province": "Province manage",
                 "product-manage": "Package manage",
+                "orders-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
             "system-parameter": {
@@ -72,6 +73,9 @@
 
         },
         "province-manage":{
+
+        },
+        "orders-manage":{
 
         },
         "product-manage": {

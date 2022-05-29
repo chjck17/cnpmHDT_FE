@@ -5,6 +5,7 @@ export const path = {
     NEWSPAGE: '/news',
     NEWSDETAILPAGE: '/detail/:id',
     PRODUCTPAGE: '/product',
+    
     ABOUTPAGE: '/about',
     LOGIN: '/login',
     LOG_OUT: '/logout',
