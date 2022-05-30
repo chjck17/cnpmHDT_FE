@@ -66,13 +66,13 @@ class NewsPageBody extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <p>
+                                    {/* <p>
                                         <div className="btn-box">
                                             <a href={`/news-detail-id=${news.id}`} >
                                                         Xem chi tiết
                                                     </a>
                                         </div>
-                                    </p>
+                                    </p> */}
                                 </div>
                             )})}
 

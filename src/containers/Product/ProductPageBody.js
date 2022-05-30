@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {getAllProduct,deleteProduct, getProduct, createNewProductService,editProductService,getProductByCategory} from '../../services/productService';
+import {getAllProduct,deleteProduct, getProduct, createNewProductService,getAllProductClient,getProductByCategory,getClientProductByCategory} from '../../services/productService';
 import './ProductPage.scss'
 import ProductDetailPage from './ProductDetailPage';
 import { Redirect, Link } from 'react-router-dom';
-import { getAllCategories } from '../../services/categoryService';
+import { getAllCategoriesClient } from '../../services/categoryService';
 import ProductPageBodyList from './ProductPageBodyList';
 import { NavItem } from 'reactstrap';
 class ProductPageBody extends Component {
@@ -22,8 +22,8 @@ class ProductPageBody extends Component {
     }
 
     getAllProductFromReact = async () => {
-        let response = await getAllProduct();
-        let category = await getAllCategories();
+        let response = await getAllProductClient();
+        let category = await getAllCategoriesClient();
         this.setState({
             productList: response.data,
             categoryList: category.data
@@ -36,7 +36,7 @@ class ProductPageBody extends Component {
                 await this.componentDidMount()
             }else
             {
-                let product =await getProductByCategory(id)
+                let product =await getClientProductByCategory(id)
                 this.setState({
                     productList: product.data
                 })
@@ -48,7 +48,6 @@ class ProductPageBody extends Component {
 
     render() {
         let productList = this.state.productList.data
-        console.log('check', productList)
         let categoryList = this.state.categoryList.data
         return(
             <div className="App">

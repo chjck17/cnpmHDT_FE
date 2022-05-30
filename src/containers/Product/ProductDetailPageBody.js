@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { isPropertyAccessExpression } from 'typescript';
-import {getAllProduct,deleteProduct, getProduct, createNewProductService, editProductService, getProductByCategory} from '../../services/productService';
+import {getProductClient,getAllProduct,deleteProduct, getProduct, createNewProductService, editProductService, getProductByCategory} from '../../services/productService';
 // import handleAddToCart from '../AddToCart/AddToCart';
 class ProductDetailPageBody extends Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class ProductDetailPageBody extends Component {
             productImage: '',
             productDescription: '',
             productSaleOff: '',
+            messageUpdate: ''
         }
     }
     // componentDidMount() {
@@ -24,7 +25,7 @@ class ProductDetailPageBody extends Component {
     }
 
     getOneProductFromReact = async () => {
-        let product = await getProduct(this.props.id)
+        let product = await getProductClient(this.props.id)
         this.setState({
             productName: product.data.productName,
             productPrice:product.data.productPrice,
@@ -111,7 +112,7 @@ class ProductDetailPageBody extends Component {
                                         </div> 
                 
                                         <div className="mb-4">
-                                            <a href="#" className="btn btn-primary btn-block">  Mua ngay  </a>
+                                            <a href={`/buyproductid=${this.props.id}`} className="btn btn-primary btn-block">  Mua ngay  </a>
                                             {/* <button className="btn btn-primary btn-block"  >
                                                 <i className="fa fa-cart-plus" aria-hidden="true"></i>
                                                 <span> Mua </span>

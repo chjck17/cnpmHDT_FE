@@ -50,8 +50,8 @@ class NewsDetailPageBody extends Component {
                                 <div class="line2"></div>
                             </div>
                             <div class="editable">
-                                <p> </p>
-                                {this.state.content}
+                                <p>{this.state.content}</p>
+                                
                             </div>
                         </div>
                     </div>

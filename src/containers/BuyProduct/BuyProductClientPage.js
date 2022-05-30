@@ -9,14 +9,17 @@ class ProductClientPage extends Component {
         super(props); 
         this.state = {
         } 
+        this.id=''
     }
 
     render() {
+        const value = this.props.match.params.id;
+        let id = value
         const { isLoggedIn } = this.props;
         return (
             <div>
                 <HomeHeader isLoggedIn={isLoggedIn}/>
-                <BuyProductPageBody/>
+                <BuyProductPageBody id={id}/>
                 <Footer/>
             </div>
         );

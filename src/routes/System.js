@@ -5,7 +5,7 @@ import UserManage from '../containers/System/UserManage';
 import CustomerManage from '../containers/System/Customer/CustomerManage';
 import ProvinceManage from '../containers/System/Province/ProvinceManage';
 import ProductManage from '../containers/System/Product/ProductManage';
-import OrdersDetailManage from '../containers/System/OrdersDetail/OrdersDetailManage';
+import OrdersManage from '../containers/System/Orders/OrdersManage';
 import NewsManage from '../containers/System/News/NewsManage';
 import ErrorPage from '../containers/ErrorPage/ErrorPage';
 import CategoryManage from '../containers/System/Category/CategoryManage.js';
@@ -25,8 +25,8 @@ class System extends Component {
                             <Route path="/system/category-manage" component={CategoryManage} />
                             <Route path="/system/customer-manage" component={CustomerManage} />
                             <Route path="/system/province-manage" component={ProvinceManage} />
-                            <Route path="/system/orders-detail-manage" component={OrdersDetailManage} />
                             <Route path="/system/product-manage" component={ProductManage} />
+                            <Route path="/system/orders-manage" component={OrdersManage} />
                             <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>

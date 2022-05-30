@@ -6,10 +6,11 @@ import AboutSection from '../Section/AboutSection.js';
 import InfoSection from '../Section/InfoSection.js';
 class AboutPage extends Component {
     render() {
+        const { isLoggedIn } = this.props;
         return (
             <div className="sub_page">
                 <div className='hero_area'>
-                    <HomeHeader />      
+                    <HomeHeader isLoggedIn={isLoggedIn}/>      
                 </div>
                 <AboutSection />
                 <InfoSection />

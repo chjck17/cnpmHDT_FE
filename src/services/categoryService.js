@@ -5,6 +5,10 @@ const getAllCategories = () => {
     return axios.get('/v1/category/list',authHeader())
 }
 
+const getAllCategoriesClient = () => {
+    return axios.get('/v1/category/auto-complete',authHeader())
+}
+
 const createNewCategory = (data) => {
     return axios.post('/v1/category/create',data,authHeader())
 }
@@ -17,4 +21,4 @@ const deleteCategory = (id) => {
     return axios.delete(`/v1/category/delete/${id}`,authHeader())
 }
 
-export {getAllCategories,createNewCategory,updateCategory,deleteCategory}
+export {getAllCategoriesClient,getAllCategories,createNewCategory,updateCategory,deleteCategory}

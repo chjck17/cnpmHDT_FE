@@ -94,7 +94,7 @@ class ProductPageBodyList extends Component {
                                             <a href={`/product-detail?id=${item.productId}`} className="btn btn-primary btn-block">
                                                 Xem chi tiết
                                             </a>
-                                            <a href={`/buyproduct${item.productId}`} className="btn btn-primary btn-block" onClick={()=>handleAddToCart(item.productId)}>
+                                            <a href={`/buyproductid=${item.productId}`} className="btn btn-primary btn-block" onClick={()=>handleAddToCart(item.productId)}>
                                                 Mua ngay
                                             </a>
                                         </div>

@@ -35,6 +35,7 @@
                 "province": "Province manage",
                 "oders-detail-manage": "Oders Detail manage",
                 "product-manage": "Package manage",
+                "orders-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
             "system-parameter": {
@@ -76,8 +77,8 @@
         "province-manage":{
 
         },
-        "--manage":{
-            
+        "orders-manage":{
+
         },
         "product-manage": {
             "fail-to-load-foprtype": "Fail to load packages list",

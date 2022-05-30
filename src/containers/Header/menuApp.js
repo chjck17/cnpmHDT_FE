@@ -9,6 +9,7 @@ export const adminMenu = [
                     { name: 'menu.system.system-administrator.province-manage', link: '/system/province-manage' },
                     { name: 'menu.system.system-administrator.orders-detail-manage', link: '/system/orders-detail-manage' },
                     { name: 'menu.system.system-administrator.product-manage', link: '/system/product-manage' },
+                    { name: 'menu.system.system-administrator.orders-manage', link: '/system/orders-manage' },
                     { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
                 ]
             },

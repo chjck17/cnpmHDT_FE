@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import NewsPageBody from './NewsPageBody'
+import HistoryOderPageBody from './HistoryOderPageBody.js'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 
-class NewsClientPage extends Component {
+class HistoryOderPage extends Component {
     constructor(props) {
-        super(props);   
+        super(props); 
+        this.state = {
+        } 
     }
+
     render() {
         const { isLoggedIn } = this.props;
         return (
             <div>
                 <HomeHeader isLoggedIn={isLoggedIn}/>
-                <NewsPageBody/> 
+                <HistoryOderPageBody/>
                 <Footer/>
             </div>
         );
@@ -33,4 +35,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsClientPage);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryOderPage);

@@ -23,6 +23,7 @@ import ProfilePage from './Profile/ProfilePage.js'
 import ContactPage from './ContactPage/ContactPage.js'
 import ProductClientPage from './Product/ProductClientPage.js'
 import ProductDetailPage from './Product/ProductDetailPage.js'
+import HistoryOrderPage from './HistoryOrder/HistoryOrderPage.js';
 import ConfirmModal from '../components/ConfirmModal';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
@@ -55,6 +56,7 @@ class App extends Component {
                     <div className="main-container">
                         <span className="content-container">
                             <Switch>
+                                <Route path={path.HISTORYORDERPAGE} component={HistoryOrderPage} />
                                 <Route path={path.HOME} exact component={(Home)} />
                                 <Route path={path.HOMEPAGE} exact component={HomePage} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />

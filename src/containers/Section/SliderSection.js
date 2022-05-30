@@ -7,7 +7,7 @@ class SliderSection extends Component {
                 <div className="jet_box">
                     <hr />
                     <h6>
-                        jetcycle
+                        motorcycle
                     </h6>
                     <hr />
                 </div>
@@ -21,20 +21,17 @@ class SliderSection extends Component {
                         <div className="col-md-4 offset-md-1">
                             <div className="detail-box">
                                 <h1>
-                                    Racing <br />
+                                    Xe Máy <br />
                                     <span>
-                                        Man cycle
+                                        Motorcycle
                                     </span>
                                 </h1>
                                 <p>
                                     There are many variations of passages of Lorem Ipsum available.
                                 </p>
                                 <div className="btn-box">
-                                    <a href="" className="btn-1">
+                                    <a href="/product" className="btn-1">
                                         Shop Now
-                                    </a>
-                                    <a href="" className="btn-2">
-                                        Get A Quote
                                     </a>
                                 </div>
                             </div>
@@ -50,17 +47,17 @@ class SliderSection extends Component {
                                     <div className="carousel-inner">
                                         <div className="carousel-item active">
                                             <div className="img-box">
-                                                <img src="assets/images/slider-img.png" alt="" />
+                                                <img src="https://www.tigitmotorbikes.com/wp-content/uploads/2020/12/yamaha-grande.png" alt="" />
                                             </div>
                                         </div>
                                         <div className="carousel-item">
                                             <div className="img-box">
-                                                <img src="assets/images/slider-img.png" alt="" />
+                                                <img src="https://sp-ao.shortpixel.ai/client/q_glossy,ret_img/http://hondahoangviet.com/wp-content/uploads/2019/01/Honda-SH-Mode-2020-Vang-Nau.png" alt="" />
                                             </div>
                                         </div>
                                         <div className="carousel-item">
                                             <div className="img-box">
-                                                <img src="assets/images/slider-img.png" alt="" />
+                                                <img src="https://www.motoshop35.fr/17354-large_default/pack-performance-kawasaki-z1000sx-2017-2019.jpg" alt="" />
                                             </div>
                                         </div>
                                     </div>
