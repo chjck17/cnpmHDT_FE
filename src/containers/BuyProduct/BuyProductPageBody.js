@@ -54,23 +54,45 @@ class BuyProductPageBody extends Component {
         })
     }
 
+    checkValideInput = () => {
+        let isValid = true;
+        let arrInput = ['ordersReceiverName','ordersReceiverPhone', 'ordersAddress','paymentMethod'];
+        let arrInput1 = ['Tên Người Nhận','Số điện thoại','địa chỉ', 'phương thức thanh toán'];
+        for(let i = 0; i < arrInput.length; i++){
+            if(!this.state[arrInput[i]]){
+                isValid = false;
+                toast.success('Đặt hàng không thành công vì thiếu ' + arrInput1[i], {
+                    position: "bottom-center",
+                    width:400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                break;
+            }
+        }
+        return isValid;
+    }
+
     handleCreateOrder = async () => {
-        let response = await createNewOrdersClient(this.state)
-        if(response && response.result){
-            toast.success('Đặt hàng thành công', {
-                position: "bottom-center",
-                width:400,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }else{
-            this.setState({
-                messageUpdate: 'Đặt hàng không thành công'
-            })
+        let isValid = this.checkValideInput();
+        if(isValid === true){
+            let response = await createNewOrdersClient(this.state)
+            if(response && response.result){
+                toast.success('Đặt hàng thành công', {
+                    position: "bottom-center",
+                    width:400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         }
     }
 
@@ -182,12 +204,12 @@ class BuyProductPageBody extends Component {
                             </div>
                             <div className='message-update-profile'>{this.state.messageUpdate}</div>
                             <div class="mt-5 text-center">
-                                <Link className="btn btn-primary btn-block"  onClick={() => {this.handleCreateOrder()}} to='/product' >Đặt hàng</Link>
-                                    {/* <button class="btn btn-primary btn-block" 
+                                {/* <Link className="btn btn-primary btn-block"  onClick={() => {this.handleCreateOrder()}} to='/product' >Đặt hàng</Link> */}
+                                    <button class="btn btn-primary btn-block" 
                                         type="button"
                                         onClick={() => {this.handleCreateOrder()}}
                                     >Đặt hàng
-                                    </button> */}
+                                    </button>
                                 </div>
                         </div>
                     </div>
