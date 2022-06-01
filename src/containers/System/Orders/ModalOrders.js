@@ -16,8 +16,7 @@ class ModalOrders extends Component {
             ordersReceiverName:'', // Ten nguoi nhan
             ordersReceiverPhone:'', // Sdt nguoi nhan 
             ordersSaleOff:'',
-            paymentMethod:'', // Phương thức thanh toán: 1: COD, 2: Online      
-   
+            paymentMethod:'', // Phương thức thanh toán: 1: COD, 2: Online         
         }
     }
     componentDidMount() {     
@@ -74,17 +73,13 @@ handleSubmit = task => {
                 centered
             >
                 <ModalHeader toggle={()=>{this.toggle()}}>Create product</ModalHeader>
-                <ModalBody>
-                    
-              
-                   
-                    <div className="modal-orders-body">
-                   
+                <ModalBody>                                                     
+                    <div className="modal-orders-body">                   
                            <div className='input-container'>
                              <Header numTodos={this.state.createOrdersDetailFormList.length} />
-                             <TodoList tasks={this.state.createOrdersDetailFormList} onDelete={this.handleDelete} />
+                             <TodoList tasks={this.state.createOrdersDetailFormList} 
+                             onDelete={this.handleDelete} />
                              <SubmitForm onFormSubmit={this.handleSubmit} />
-
                            </div>                    
                         <div className="input-container">
                             <label>customerId</label>
@@ -142,9 +137,7 @@ handleSubmit = task => {
                 <ModalFooter                 
                     // isCreate={this.props.isCreate}
                     // isEdit={this.props.isEdit}
-
-                >
-                    
+                >                    
                     <Button 
                         color="primary" 
                         className="px-3" 
@@ -167,7 +160,6 @@ class SubmitForm extends React.Component {
     this.props.onFormSubmit(this.state);
     this.setState({ ordersDetailAmount: '',productId:'' });
   }
-
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
@@ -180,7 +172,6 @@ class SubmitForm extends React.Component {
           onChange={(e) => this.setState({ordersDetailAmount: e.target.value})}
         />
         </div>
-
         <div className="input-container">
         <label>productId</label>
         <input 
@@ -188,18 +179,13 @@ class SubmitForm extends React.Component {
           value={this.state.productId}
           onChange={(e) => this.setState({productId: e.target.value})}
         />
-
-        </div>
-      
+        </div>      
         </div>          
-
         <button className='button'>ADD</button>
       </form>
     );
   }
 }
-
-
 const Header = (props) => {
   return(
     <div className='card-header'>
@@ -209,8 +195,6 @@ const Header = (props) => {
     </div>
   )
 }
-
-
 const TodoList = (props) => {
   const todos = props.tasks.map((todo, index) => {
     return <Todo 
@@ -226,22 +210,14 @@ const TodoList = (props) => {
                             <tbody>
                                 <tr>
                                     <th>ordersDetailAmount</th>
-                                    <th>productId</th>
-                             
+                                    <th>productId</th>                             
                                     </tr>
-                                    {todos}
-                                    
+                                    {todos}                                    
                                 </tbody>
                         </table>
   </div>
-
-
-    // <div className='list-wrapper'>
-    //   {todos}
-    // </div>
   );
 }
-
 const Todo = (props) => {
   return(
       <tr className="divClass">
@@ -263,5 +239,4 @@ const mapDispatchToProps = dispatch => {
     return {
     };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(ModalOrders);

@@ -11,14 +11,15 @@ class ModalEditOrders extends Component {
     constructor(props){
         super(props);
         this.state = {
-          updateOrdersDetailFormList: [],
-            customerId:'',
+          //updateOrdersDetailFormList: [],
+           // customerId:'',
             ordersAddress:'', // Dia chi giao hang
+            ordersId:'',
             ordersReceiverName:'', // Ten nguoi nhan
             ordersReceiverPhone:'', // Sdt nguoi nhan 
-            ordersSaleOff:'',
-            paymentMethod:'', // Phương thức thanh toán: 1: COD, 2: Online      
-            ordersId:''
+           // ordersSaleOff:'',
+            //paymentMethod:'', // Phương thức thanh toán: 1: COD, 2: Online      
+           
         }
     }
    async componentDidMount() {     
@@ -27,13 +28,12 @@ class ModalEditOrders extends Component {
     if(orders&& !_.isEmpty(orders))
     {
         this.setState({
-            customerId:orders.customerId,
+          //  customerId:orders.customerId,
             ordersAddress:orders.ordersAddress, // Dia chi giao hang
+            ordersId:orders.ordersId,
             ordersReceiverName:orders.ordersReceiverName, // Ten nguoi nhan
             ordersReceiverPhone:orders.ordersReceiverPhone, // Sdt nguoi nhan 
-            ordersSaleOff:orders.ordersSaleOff,
-            paymentMethod:orders.paymentMethod, // Phương thức thanh toán: 1: COD, 2: Online      
-            ordersId:orders.ordersId,
+         
         })
     }
     }
@@ -47,38 +47,19 @@ class ModalEditOrders extends Component {
          
     }
     
-handleSubmit = task => {
- 
-    this.setState({updateOrdersDetailFormList: [...this.state.updateOrdersDetailFormList, task]});
-   
-  }
 
   
-  handleDelete = (index) => {
-    const newArr = [...this.state.updateOrdersDetailFormList];
-    newArr.splice(index, 1);
-    this.setState({updateOrdersDetailFormList: newArr});
-  }
   handleOnChangeInput = (event, id) => {
-    //bad code
-    // this.state[id]=event.target.value;
-    // this.setState({
-    //      ...this.state
-    // }, ()=> {
-    //     console.log('check bad state: ',this.state)
-    // })
-    //good code
+
     let copyState = {...this.state};
     copyState[id] = event.target.value;
     this.setState({
         ...copyState
     })
-    //console.log(event.target.value, id)
+    
 }
     render() {
-        //let test=this.state.adds;
-        //console.log('Duyyyyyyyyyyyyyy:',test)
-        //  <InputForm tasks={this.state.tasks} onDelete={this.handleDelete} />
+      
         return (
             
             <Modal               
@@ -89,34 +70,23 @@ handleSubmit = task => {
                 centered
             >
                 <ModalHeader toggle={()=>{this.toggle()}}>Create product</ModalHeader>
-                <ModalBody>
-                    
-              
-                   
+                <ModalBody>                                  
                     <div className="modal-orders-body">
-                   
-                           <div className='input-container'>
-                             <Header numTodos={this.state.updateOrdersDetailFormList.length}
-                            />
-                             <TodoList tasks={this.state.updateOrdersDetailFormList} onDelete={this.handleDelete} />
-                             <SubmitForm onFormSubmit={this.handleSubmit}
-                              currenListOrdersDetail={this.props.currenListOrdersDetail}  />
-
-                           </div>                    
-                        <div className="input-container">
-                            <label>customerId</label>
-                            <input 
-                                type="text" 
-                                onChange={(event)=> {this.handleOnChangeInput(event, "customerId")}}
-                                value={this.state.customerId}
-                            />
-                        </div>
+                                       
                         <div className="input-container">
                             <label>ordersAddress</label>
                             <input 
                                 type="text" 
                                 onChange={(event)=> {this.handleOnChangeInput(event, "ordersAddress")}}
                                 value={this.state.ordersAddress}
+                            />
+                        </div>
+                        <div className="input-container">
+                            <label>ordersId</label>
+                            <input 
+                                type="text" 
+                                onChange={(event)=> {this.handleOnChangeInput(event, "ordersId")}}
+                                value={this.state.ordersId}
                             />
                         </div>
                         <div className="input-container">
@@ -135,22 +105,7 @@ handleSubmit = task => {
                                 value={this.state.ordersReceiverPhone}
                             />
                         </div>
-                        <div className="input-container">
-                            <label>ordersSaleOff</label>
-                            <input 
-                                type="text" 
-                                onChange={(event)=> {this.handleOnChangeInput(event, "ordersSaleOff")}}
-                                value={this.state.ordersSaleOff}
-                            />
-                        </div>
-                        <div className="input-container">
-                            <label>paymentMethod</label>
-                            <input 
-                                type="text" 
-                                onChange={(event)=> {this.handleOnChangeInput(event, "paymentMethod")}}
-                                value={this.state.paymentMethod}
-                            />
-                        </div>
+                       
                 
                        
            
@@ -173,126 +128,7 @@ handleSubmit = task => {
             </Modal>
         )
     }
-
-}
-class SubmitForm extends React.Component {
-  state = { ordersDetailAmount: '',ordersDetailId:'' };
-
-  async componentDidMount() {     
-  
-    await this.getAllProductFromReact();
-    }
-    getAllProductFromReact = async () => {
-    // let response = await this.props.currenListOrdersDetail;;
-    let response = await getAllOrdersDetail( this.props.currenListOrdersDetail);
-    let A=[];
-    A=response.data
-   // console.log('did_mount1 :',A.data.length);
-    for (let i = 0; i < A.data.length; i++) {
-        this.setState({
-            ordersDetailAmount: A.data[i].ordersDetailAmount,
-            ordersDetailId:A.data[i].ordersDetailId
-         })
-         this.props.onFormSubmit(this.state);
-      
-    };
-    this.setState({ ordersDetailAmount: '',ordersDetailId:'' });
-}
-  handleSubmit = (e) => {
-    e.preventDefault();
-    if(this.state.ordersDetailAmount  === ''|| this.state.ordersDetailId  === '')
-     return;
-    this.props.onFormSubmit(this.state);
-    this.setState({ ordersDetailAmount: '',ordersDetailId:'' });
   }
-
-  render() {
-    return(
-      <form onSubmit={this.handleSubmit}>
-        <div className="modal-orders-body">
-        <div className="input-container">
-        <label>ordersDetailAmount</label>
-        <input 
-          type='text'
-          value={this.state.ordersDetailAmount}
-          onChange={(e) => this.setState({ordersDetailAmount: e.target.value})}
-        />
-        </div>
-
-        <div className="input-container">
-        <label>ordersDetailId</label>
-        <input 
-          type='text'
-          value={this.state.ordersDetailId}
-          onChange={(e) => this.setState({ordersDetailId: e.target.value})}
-        />
-
-        </div>
-      
-        </div>          
-
-        <button className='button'>ADD</button>
-      </form>
-    );
-  }
-}
-
-
-const Header = (props) => {
-  return(
-    <div className='card-header'>
-      <h1 className='card-header-title header'>
-        You have {props.numTodos} Product
-      </h1>
-    </div>
-  )
-}
-
-
-const TodoList = (props) => {
-    
-  const todos = props.tasks.map((todo, index) => {
-    return <Todo 
-    content1={todo.ordersDetailAmount}
-    content2={todo.ordersDetailId}
-    key={index} 
-    id={index} 
-    onDelete={props.onDelete} />
-  })
-  return( 
-<div className="customers-table mt-3 mx-1">
-                        <table id="customers">
-                            <tbody>
-                                <tr>
-                                    <th>ordersDetailAmount</th>
-                                    <th>ordersDetailId</th>
-                             
-                                    </tr>
-                                    {todos}
-                                    
-                                </tbody>
-                        </table>
-  </div>
-
-
-    // <div className='list-wrapper'>
-    //   {todos}
-    // </div>
-  );
-}
-
-const Todo = (props) => {
-  return(
-      <tr className="divClass">
-         <td>{props.content1}</td>
-            <td>{props.content2}</td>                                                   
-        <td>
-             <button className="btn-actions" onClick={()=>props.onDelete(props.id)}><i className="fa fa-pencil-square-o"></i></button>                                                                     
-         </td>
-     </tr>
-
-  );
-}
 const mapStateToProps = state => {
     return {
     };

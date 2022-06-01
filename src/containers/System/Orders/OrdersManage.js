@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import '../Orders/OrdersManage.scss'
-import {getAllOrders,getAllOrdersDetail,createNewOrdersService,editOrdersService} from '../../../services/ordersService';
+import {getAllOrders,getAllOrdersDetail,createNewOrdersService,editOrdersService,editStateOrdersService} from '../../../services/ordersService';
 import ModalEditOrders from './ModalEditOrders';
 import ModalOrdersDetail from './ModalOrdersDetail';
 import ModalOrders from './ModalOrders';
+import ModalEditStateOrders from './ModalEditStateOrders';
 class OrdersManage extends Component {
 // check hàm contructor 
 // muốn khai báo 1 đối tượng cần tạo đầu tiên mà nó là contructor
@@ -14,11 +15,13 @@ class OrdersManage extends Component {
         // this là class Product manage
         this.state ={
             arrOrders: [],
+            state:'',
             //info: [],
             isOpenModalOrders: false,
             isOpenDetailModalOrders: false,
             isCreateModalOrders: false,
             isEditModalOrders: false,
+            isEditModalStateOrders: false,
             ListOrdersDetail:[],
             EditOrdersDetail:{},
         }
@@ -50,6 +53,12 @@ class OrdersManage extends Component {
             //ListOrdersDetail:null
         })
     }
+    toggleEditStateOrdersModal = () =>{
+        this.setState ({
+            isEditModalStateOrders: !this.state.isEditModalStateOrders,
+            //ListOrdersDetail:null
+        })
+    }
     toggleOrdersModal= () =>{
         this.setState ({
             isOpenModalOrders: !this.state.isOpenModalOrders,
@@ -73,12 +82,22 @@ class OrdersManage extends Component {
 
          })
     }
+    handleEditStateOrders= async(data)=>{
+        
+        this.setState ({
+        isEditModalStateOrders:true,
+           ListOrdersDetail:data.ordersId,
+           EditStateOrdersDetail:data,
+
+        })
+   }
     handleAddNewOrders(){
         this.setState ({
             isOpenModalOrders:true,
            // ListOrdersDetail:data.ordersId,
             })
     }
+
     createNewOrders = async (data) => {
          let response = await createNewOrdersService(data);
         // this.setState ({
@@ -94,6 +113,12 @@ class OrdersManage extends Component {
        console.log('respones create cus: ', response)
 
    }
+   updateStateNewOrders= async (data) => {
+   // let response = await editStateOrdersService(data);
+   console.log('respones create cus: ', data)
+
+}
+
         render() {
             let arrOrders =this.state.arrOrders.data
             return (
@@ -117,6 +142,14 @@ class OrdersManage extends Component {
                         EditOrdersDetail= {this.state.EditOrdersDetail}
                     />
                     }
+                     {this.state.isEditModalStateOrders&&<ModalEditStateOrders
+                        isOpen={this.state.isEditModalStateOrders}
+                        toggleFromParent={this.toggleEditStateOrdersModal}
+                        updateStateOrders={this.updateStateNewOrders}
+                        currenListOrdersDetail = {this.state.ListOrdersDetail}
+                        EditStateOrdersDetail= {this.state.EditStateOrdersDetail}
+                    />
+                    }
 
                     <div className="title text-center">Manage Orders</div>
                     <div className="mx-1">
@@ -129,24 +162,35 @@ class OrdersManage extends Component {
                         <table id="customers">
                             <tbody>
                                 <tr>
-                                    <th>ordersId</th>
-                                    <th>customerId</th>
-                                    <th>ordersSaleOff</th>
-                                    <th>ordersTotalMoney</th>
-                                    <th>ordersVat</th>
-                                    <th>ordersState</th>
-                                    <th>ordersPrevState</th>
-                                    <th>ordersAddress</th>
-                                    <th>ordersReceiverName</th>
-                                    <th>ordersReceiverPhone</th> 
-                                    <th>ordersCode</th>
-                                    <th>ordersPaymentMethod</th>
+                                    <th>ID</th>
+                                    <th>Customer ID</th>
+                                    <th>Sale Off</th>
+                                    <th>Total Money</th>
+                                    <th>Vat</th>
+                                    <th>State</th>
+                                    <th>Previous State</th>
+                                    <th>Receiver Address</th>
+                                    <th>Receiver Name</th>
+                                    <th>Receiver Phone</th> 
+                                    <th>Code</th>
+                                    <th>Payment Method</th>
                             
                                     <th>Actions</th>
                                 </tr>
                                 {
                                     arrOrders && arrOrders.map((ss, index) => {
-                                        //console.log('eric check map ', item, index)
+                                        //console.log('eric check map ', item, index)  
+                                        let t=''                           
+                                        if(ss.ordersState=='1'){
+                                           t='Da tao'
+                                         }
+                                         else if (ss.ordersState=='2')
+                                         {
+                                            t='Da huy'
+                                         }
+                                         else{
+                                            t=''
+                                         }
                                         return (
                                             <tr className="divClass">
                                                 
@@ -155,7 +199,7 @@ class OrdersManage extends Component {
                                                     <td>{ss.ordersSaleOff}</td>
                                                     <td>{ss.ordersTotalMoney}</td>
                                                     <td>{ss.ordersVat}</td>                                        
-                                                    <td>{ss.ordersState}</td>
+                                                    <td>{t}</td>
                                                     <td>{ss.ordersPrevState}</td>
                                                     <td>{ss.ordersAddress}</td>
                                                     <td>{ss.ordersReceiverName}</td>
@@ -165,6 +209,7 @@ class OrdersManage extends Component {
                                                 <td>
                                                     <button className="btn-actions" onClick={()=>this.handleEditOrders(ss)}><i className="fa fa-pencil-square-o"></i></button>                                              
                                                     <button className="btn-actions" onClick={()=>this.listOrdersDetail(ss)}><i className="fa fa-plus-square-o"></i></button>
+                                                    <button className="btn-actions" onClick={()=>this.handleEditStateOrders(ss)}><i className="fa fa-pencil"></i></button>
                                                 </td>
                                             </tr>
                                         )
@@ -180,6 +225,10 @@ class OrdersManage extends Component {
     
 
 }
+
+
+
+
 
 const mapStateToProps = state => {
     return {

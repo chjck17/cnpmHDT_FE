@@ -52,6 +52,7 @@ class ModalOrdersDetail extends Component {
                                     <th>ordersDetailPrice</th>
                                     <th>ordersDetailAmount</th>
                                     <th>productName</th>
+                                    
                                 
                                 </tr>
                 {

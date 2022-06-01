@@ -55,7 +55,6 @@ class ProductManage extends Component {
             isCreateModalProduct: !this.state.isOpenModalProduct,
         })
     }
-
     handleEditProduct = async(data) =>{
         console.log('check',data)
         this.setState ({
@@ -65,7 +64,6 @@ class ProductManage extends Component {
         })
         
     }
-
     toggleProductModal = () =>{
         this.setState ({
             isOpenModalProduct: !this.state.isOpenModalProduct,
@@ -148,7 +146,7 @@ class ProductManage extends Component {
                         test={'abc'}
                     />
                     {this.state.isOpenEditModalProduct&&
-                    <ModalOrdersDetail
+                    <ModalEditProduct
                         isOpen={this.state.isOpenEditModalProduct}
                         isCreate={this.isCreateModalProduct}
                         isEdit={this.state.isEditModalProduct}
