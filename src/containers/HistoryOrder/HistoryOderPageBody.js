@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import './OrdersManage.scss'
 import {getOrdersByCustomerId,clientCancelOrders,getOrderDetailByOrderId} from '../../services/ordersService';
 import OrderDetail from './OrderDetail';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class HistoryOderPageBody extends Component {
     constructor(props) {
         super(props);
@@ -40,6 +42,15 @@ class HistoryOderPageBody extends Component {
                 alert(response.message)
             }else{
                 await this.getOrdersFromReact();
+                toast.success('Hủy đơn hàng thành công', {
+                    position: "bottom-center",
+                    width:400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,})
             }
         }catch(e){
             console.log(e)
