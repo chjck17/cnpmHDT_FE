@@ -1,19 +1,19 @@
-#products {
+#ordersdetail {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#products td, #products th {
+#ordersdetail td, #ordersdetail th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#products tr:nth-child(even){background-color: #f2f2f2;}
+#ordersdetail tr:nth-child(even){background-color: #f2f2f2;}
 
-#products tr:hover {background-color: #ddd;}
+#ordersdetail tr:hover {background-color: #ddd;}
 
-#products th {
+#ordersdetail th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -34,7 +34,7 @@
   }
 }
 
-.modal-product-container{
+.modal-ordersdetail-container{
   .modal-content{
     .modal-header{
       button{
@@ -45,14 +45,24 @@
       }
     }
   }
-  .modal-product-body{
+  .modal-ordersdetail-body{
     .input-container{
       display: flex;
       flex-direction: column;
-  
       input {
         border-radius: 3px;
         height: 30px;
+      }
+    }
+    .fix{
+      display: flex;
+    }
+    .fix1{
+      display: flex;
+      input {
+        border-radius: 3px;
+        height: 20px;
+        margin: 0px 10px 0px 10px;
       }
     }
   }

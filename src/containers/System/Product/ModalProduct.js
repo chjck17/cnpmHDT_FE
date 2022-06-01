@@ -16,7 +16,7 @@ class ModalProduct extends Component {
             productShortDescription: '',
             productCategoryId: '',
             productSaleOff: '',
-          
+            
         }
     }
 
@@ -62,7 +62,8 @@ class ModalProduct extends Component {
         return isValid;
     }
     handleAddNewProduct = () => {
-        window.location.reload();
+        console.log('cai them ne DUYYYYYYYYYYYYYYY:',this.state)
+        //window.location.reload();
         let isValid = this.checkValideInput();
         if(isValid === true){
             //call api create modal
@@ -86,13 +87,13 @@ class ModalProduct extends Component {
                 
                 isOpen={this.props.isOpen}
                 toggle={()=>{this.toggle()}} 
-                className={'modal-product-container'}
+                className={'modal-news-container'}
                 size="lg"
                 centered
             >
                 <ModalHeader toggle={()=>{this.toggle()}}>Create product</ModalHeader>
                 <ModalBody>
-                    <div className="modal-product-body">
+                    <div className="modal-news-body">
                         <div className="input-container">
                             <label>productName</label>
                             <input 

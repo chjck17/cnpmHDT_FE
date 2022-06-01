@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
+import queryString from 'query-string'
 import { connect } from 'react-redux';
+import ProductDetailPageBody from './ProductDetailPageBody.js'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
-import NewsDetailPageBody from './NewsDetailPageBody.js';
-
-class NewsDetailPage extends Component {
+import './ProductPage.scss'
+class ProductDetailPage extends Component {
     constructor(props) {
-        super(props);   
+        super(props); 
         this.id=''  
     }
     render() {
-        const value = this.props.match.params.id;
-        let id = value
+        const value=queryString.parse(this.props.location.search);
+        let id=value.id;
         return (
             <div>
                 <HomeHeader/>
-                <NewsDetailPageBody id={id}/>
+                <ProductDetailPageBody id={id}/> 
                 <Footer/>
             </div>
         );
@@ -33,4 +34,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsDetailPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailPage);

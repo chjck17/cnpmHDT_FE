@@ -33,7 +33,9 @@
                 "user-manage": "User manage",
                 "customer": "Customer manage",
                 "province": "Province manage",
+                "oders-detail-manage": "Oders Detail manage",
                 "product-manage": "Package manage",
+                "orders-manage": "Package manage",
                 "register-package-group-or-account": "Register service package for group/account"
             },
             "system-parameter": {
@@ -71,7 +73,11 @@
         "customer-manage":{
 
         },
+
         "province-manage":{
+
+        },
+        "orders-manage":{
 
         },
         "product-manage": {

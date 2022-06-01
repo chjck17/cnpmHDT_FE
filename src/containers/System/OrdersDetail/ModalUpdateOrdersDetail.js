@@ -5,34 +5,30 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter} from "../../../utils/emitter";
 import _ from 'lodash';
 
-class ModalUpdateProvince extends Component {
+class ModalUpdateOrdersDetail extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             id:'',
-            name: '',
-            parentId: '',
-            provinceKind: '',
-            kind: '',
-            status: '',
+            price: '',
+            amount: '',
+            productId: '',
+            ordersId: '',
         }
     }
 
-
-    
     componentDidMount() {
-        let province = this.props.currentProvince;
-        if(province && !_.isEmpty(province))
+        let ordersDetail = this.props.currentProvince;
+        if (ordersDetail && !_.isEmpty(ordersDetail))
         {
             this.setState({
-                id: province.id,
-                name: province.name,
-                status: province.status,
+                id: ordersDetail.id,
+                price: ordersDetail.price,
+                amount: ordersDetail.amount,
             })
         }
-
-        console.log('check: ',this.props.currentProvince)
+        //console.log('check: ',this.props.currentOrdersDetail)
     }
 
     toggle = () => {
@@ -84,13 +80,13 @@ class ModalUpdateProvince extends Component {
             <Modal                 
                 isOpen={this.props.isOpen}
                 toggle={()=>{this.toggle()}} 
-                className={'modal-province-container'}
+                className={'modal ordersDetail-container'}
                 size="lg"
                 centered
             >
                 <ModalHeader toggle={()=>{this.toggle()}}>Update Province</ModalHeader>
                 <ModalBody>
-                <div className="modal-province-body">
+                <div className="modal ordersDetail-body">
                         <div className="input-container">
                             <label>Name</label>
                             <input 
@@ -133,4 +129,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateProvince);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateOrdersDetail);

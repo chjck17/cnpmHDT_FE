@@ -20,9 +20,6 @@ class HomePage extends Component {
                 </div>
                 <AboutSection />
                 <ProductSection />
-                <ClientSection />
-                <ContactSection />
-                <SubcribeSection />
                 <InfoSection />
                 <Footer />
             </div>

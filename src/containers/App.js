@@ -21,10 +21,13 @@ import NewsClientPage from './News/NewsClientPage.js'
 import NewsDetailPage from './News/NewsDetailPage.js'
 import ProfilePage from './Profile/ProfilePage.js'
 import ContactPage from './ContactPage/ContactPage.js'
-import ProductDetailPage from './ProductDetailPage/ProductDetailPage.js'
+import ProductClientPage from './Product/ProductClientPage.js'
+import ProductDetailPage from './Product/ProductDetailPage.js'
+import HistoryOrderPage from './HistoryOrder/HistoryOrderPage.js';
 import ConfirmModal from '../components/ConfirmModal';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
+import BuyProductClientPage from './BuyProduct/BuyProductClientPage';
 
 class App extends Component {
 
@@ -53,15 +56,18 @@ class App extends Component {
                     <div className="main-container">
                         <span className="content-container">
                             <Switch>
-                                <Route exact path={path.NEWSDETAILPAGE} component={(NewsDetailPage)} />
+                                <Route path={path.HISTORYORDERPAGE} component={HistoryOrderPage} />
                                 <Route path={path.HOME} exact component={(Home)} />
                                 <Route path={path.HOMEPAGE} exact component={HomePage} />
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                 <Route path={path.ABOUTPAGE} component={AboutPage} />
                                 <Route path={path.NEWSPAGE} component={NewsClientPage} />
+                                <Route path={path.NEWSDETAILPAGE} component={NewsDetailPage} />
+                                <Route path={path.BUYPRODUCT} component={BuyProductClientPage} />
                                 <Route path={path.PROFILE} exact component={userIsAuthenticated(ProfilePage)} />
-                                <Route path={path.PRODUCTPAGE} component={ProductDetailPage} />
+                                <Route path={path.PRODUCTPAGE} component={ProductClientPage} />
+                                <Route path={path.PRODUCtDETAILTPAGE} component={ProductDetailPage} />
                                 <Route path={path.CONTACTPAGE} component={ContactPage} />
                             </Switch>
                         </span>

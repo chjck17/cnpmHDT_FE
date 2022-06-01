@@ -52,7 +52,7 @@ class InfoSection extends Component {
                                         <a className="" href="about.html">About </a>
                                     </li>
                                     <li className="">
-                                        <a className="" href="cycle.html"> Our cycles </a>
+                                        <a className="" href="product"> Our cycles </a>
                                     </li>
                                     <li className="">
                                         <a className="" href="contact.html">Contact us</a>

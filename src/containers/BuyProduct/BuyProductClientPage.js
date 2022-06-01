@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import NewsPageBody from './NewsPageBody'
+import BuyProductPageBody from './BuyProductPageBody.js'
 import Footer from '../ClientCommon/Footer';
 import HomeHeader from '../ClientCommon/HomeHeader';
 
-class NewsClientPage extends Component {
+class ProductClientPage extends Component {
     constructor(props) {
-        super(props);   
+        super(props); 
+        this.state = {
+        } 
+        this.id=''
     }
+
     render() {
+        const value = this.props.match.params.id;
+        let id = value
         const { isLoggedIn } = this.props;
         return (
             <div>
                 <HomeHeader isLoggedIn={isLoggedIn}/>
-                <NewsPageBody/> 
+                <BuyProductPageBody id={id}/>
                 <Footer/>
             </div>
         );
@@ -33,4 +38,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsClientPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductClientPage);

@@ -156,7 +156,7 @@ class BodyProfile extends Component {
                             </div>
                             <div className='message-update-profile'>{this.state.messageUpdate}</div>
                             <div class="mt-5 text-center">
-                                <button class="btn btn-primary profile-button" 
+                                <button class="btn btn-primary btn-block" 
                                     type="button"
                                     onClick={() => {this.handleUpdateProfile()}}
                             >Update Profile</button></div>

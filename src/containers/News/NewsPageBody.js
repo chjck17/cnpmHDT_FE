@@ -8,12 +8,12 @@ class NewsPageBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
-            title: '',
-            content: '',
-            avatar: '',
-            description: '',
-            banner: '',
+            // id: '',
+            // title: '',
+            // content: '',
+            // avatar: '',
+            // description: '',
+            // banner: '',
             newsList: []
         }
     }
@@ -47,39 +47,37 @@ class NewsPageBody extends Component {
                             HOT NEWS
                         </h2>
                     </div>
-                    <div className="cycle_container">
-                        {newsList && newsList.map((news, index) => (
-                            <div className="box">
-                                <div className="box-content">
-                                    <div className="img-box">
-                                        <img className="news-img" src={news.avatar} alt="" />
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="text">
-                                            {/* <h6>
-                                                {news.createddate}
-                                            </h6> */}
-                                            <div>
-                                                <span>{news.title}</span>
+                    <main>
+                        <div className="cycle_container">
+                            {
+                            newsList && newsList.map((news, index) => {
+                                return(
+                                <div className="box">
+                                    <div className="box-content">
+                                        <div className="img-box">
+                                            <img className="news-img" src={news.avatar} alt="" />
+                                        </div>
+                                        <div className="detail-box">
+                                            <div className="text">
+                                                
+                                                <div>
+                                                    <span>{news.title}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {/* <p>
+                                        <div className="btn-box">
+                                            <a href={`/news-detail-id=${news.id}`} >
+                                                        Xem chi tiết
+                                                    </a>
+                                        </div>
+                                    </p> */}
                                 </div>
-                                <div className="btn-box">
-                                    {/* <a href={"detail/" + news.id}>
-                                        Xem chi tiết
-                                    </a> */}
-                                    <Link
-                                        to={{
-                                            pathname: `/detail/${news.id}`
-                                        }}>
-                                        Xem chi tiết
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
+                            )})}
 
-                    </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         );
