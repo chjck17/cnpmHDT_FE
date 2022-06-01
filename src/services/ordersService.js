@@ -11,10 +11,15 @@ const getAllOrdersDetail = (OrdersId) => {
 const editOrdersService = (data) => {
   return axios.put('/v1/orders/update',data, authHeader())
 }
+const editStateOrdersService = (data) => {
+  return axios.put('/v1/orders/update-state',data, authHeader())
+
+}
 
 const getOrders = (OrdersId) => {
   return axios.get(`/v1/orders/get/${OrdersId}`,authHeader())
 }
+
 
 const createNewOrdersService = (data) => {
   return axios.post('/v1/orders/create',data,authHeader())
@@ -36,4 +41,5 @@ const getOrdersByCustomerId = () => {
   return axios.get('/v1/orders/client-list',authHeader())
 }
 
-export {getOrderDetailByOrderId,getOrdersByCustomerId,createNewOrdersClient,getAllOrders,clientCancelOrders, getOrders, createNewOrdersService,editOrdersService,getAllOrdersDetail}
+export {editStateOrdersService,getOrderDetailByOrderId,getOrdersByCustomerId,createNewOrdersClient,getAllOrders,clientCancelOrders, getOrders, createNewOrdersService,editOrdersService,getAllOrdersDetail}
+

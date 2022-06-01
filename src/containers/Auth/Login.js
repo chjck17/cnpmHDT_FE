@@ -8,8 +8,9 @@ import './Login.scss';
 import {handleLoginApi} from '../../services/userService'
 import { FormattedMessage } from 'react-intl';
 import { cnpmConstant } from '../../utils/constant.js';
+import RegisterModal  from './RegisterModal.js';
 
-
+import {RegisterService} from '../../services/customerService.js'
 
 class Login extends Component {
     constructor(props) {
@@ -18,7 +19,9 @@ class Login extends Component {
             username: '',
             password: '',
             isShowPassword: false,
-            errMessage: ''
+            errMessage: '',
+            isOpenModalRegister: false,
+        
         }
     }
     handleOnChangeUsername = (e) => {
@@ -55,10 +58,38 @@ class Login extends Component {
             isShowPassword: !this.state.isShowPassword
         })
     }
-
+    handleRegister = async(data)=>{
+        //let ret =await getAllOrdersDetail(data.ordersId);
+        // console.log('click save product:',ret.data);
+         this.setState ({
+        isOpenModalRegister:true,
+        // ListOrdersDetail:data.ordersId,
+         })
+    }
+    toggleRegisterModal = () =>{
+        this.setState ({
+            isOpenModalRegister: !this.state.isOpenModalRegister,
+            //ListOrdersDetail:null
+        })
+    }
+    RegisterOrders= async (data) => {
+        // let response = await editStateOrdersService(data);
+        let response = await RegisterService(data);
+        console.log('respones create cus: ', response)
+     
+     }
     render() {
         return (
+
+            
             <div className='login-background'>
+                {this.state.isOpenModalRegister&&<RegisterModal
+                        isOpen={this.state.isOpenModalRegister}
+                        toggleFromParent={this.toggleRegisterModal}
+                        RegisterOrders={this.RegisterOrders}
+                        //currenListOrdersDetail = {this.state.ListOrdersDetail}
+                    />
+                }
                 <div className='login-container'>
                     <div className='login-content row'>
                         <div className='col-12 text-login'>Login</div>
@@ -93,7 +124,9 @@ class Login extends Component {
                             <button className='btn-login' onClick={() => this.handleLogin()}>Login</button>
                         </div>
                         <div className='col-12'>
-                            <span className='forgot-password'>Forgot your password ?</span>
+                            <span  onClick={() => this.handleRegister()}  className='forgot-password'>
+                                Register
+                            </span>
                         </div>
                         <div className='col-12'></div>
                     </div>
