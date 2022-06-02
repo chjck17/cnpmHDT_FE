@@ -24,18 +24,22 @@ class BodyProfile extends Component {
     }
 
     getCustomerInfo = async () => {
-        let response = await getProfile();
-        if (response && response.result) {
-            this.setState({
-                fullName: response.data.fullName,
-                email: response.data.email,
-                phone: response.data.phone,
-                genderCustomer: response.data.genderCustomer,
-                addressCustomer: response.data.addressCustomer,
-                birthdayCustomer: response.data.birthdayCustomer,
-                loyaltyLevelCustomer: response.data.loyaltyLevelCustomer,
-                username: response.data.username
-            })
+        try{
+            let response = await getProfile();
+            if (response && response.result) {
+                this.setState({
+                    fullName: response.data.fullName,
+                    email: response.data.email,
+                    phone: response.data.phone,
+                    genderCustomer: response.data.genderCustomer,
+                    addressCustomer: response.data.addressCustomer,
+                    birthdayCustomer: response.data.birthdayCustomer,
+                    loyaltyLevelCustomer: response.data.loyaltyLevelCustomer,
+                    username: response.data.username
+                })
+            }
+        } catch {
+            alert("Không có quyền truy cập")
         }
     }
 
@@ -55,17 +59,14 @@ class BodyProfile extends Component {
             birthday: this.state.birthdayCustomer,
             gender: this.state.genderCustomer
         }
-        let response = await updateProfile(data)
-        if(response && response.result){
-            await this.getCustomerInfo();
-            this.setState({
-                messageUpdate: 'Cập nhật dữ liệu thành công'
-            })
-        }else{
-            this.setState({
-                messageUpdate: 'Cập nhật dữ liệu KHÔNG thành công'
-            })
-        }
+            let response = await updateProfile(data)
+            if(response && response.result){
+                await this.getCustomerInfo();
+                this.setState({
+                    messageUpdate: response.message
+                })
+            } 
+        
     }
 
     render() {

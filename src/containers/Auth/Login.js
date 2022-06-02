@@ -19,7 +19,7 @@ class Login extends Component {
             username: '',
             password: '',
             isShowPassword: false,
-            errMessage: '',
+            message: '',
             isOpenModalRegister: false,
         
         }
@@ -39,16 +39,19 @@ class Login extends Component {
 
     handleLogin = async () => {
         this.setState({
-            errMessage: ''
+            message: ''
         })
         let response = await handleLoginApi(this.state.username,this.state.password)
         if(response.data && response.data.token){
+            this.setState({
+                message: response.message
+            })
             localStorage.setItem('token',response.data.token)
             this.props.userLoginSuccess(response.data)
         }
         else{
             this.setState({
-                errMessage: "Tên đăng nhập hoặc mật khẩu không đúng!"
+                message: response.message
             })
         }
     }
@@ -118,7 +121,7 @@ class Login extends Component {
                             
                         </div>
                         <div className='col-12' style={{color:'red'}}>
-                            {this.state.errMessage}
+                            {this.state.message}
                         </div>
                         <div className='col-12'>
                             <button className='btn-login' onClick={() => this.handleLogin()}>Login</button>
