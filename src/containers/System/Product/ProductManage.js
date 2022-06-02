@@ -6,6 +6,9 @@ import {getAllProduct,deleteProduct, getProduct, createNewProductService,editPro
 import ModalProduct from './ModalProduct';
 import ModalEditProduct from './ModalEditProduct';
 import ModalOrdersDetail from '../Orders/ModalOrdersDetail';
+import { emitter} from "../../../utils/emitter";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class ProductManage extends Component {
 // check hàm contructor 
 // muốn khai báo 1 đối tượng cần tạo đầu tiên mà nó là contructor
@@ -93,14 +96,57 @@ class ProductManage extends Component {
         //     }
         // }
     createNewProduct = async (data) => {
-            let response = await createNewProductService(data);
-            this.setState ({
-                isOpenModalProduct:false,
-            });
-            // location.reload();
-            console.log('respones create cus: ', response.data)
-            console.log('check data from child: ', data)
+            // let response = await createNewProductService(data);
+            // this.setState ({
+            //     isOpenModalProduct:false,
+            // });
+            // // location.reload();
+            // console.log('respones create cus: ', response.data)
+            // console.log('check data from child: ', data)
 
+
+
+    try{
+        let response = await createNewProductService(data);
+        console.log('Thong bao :',response.result)
+        if(response.result == true)
+        {
+        toast.success('Thêm xe thành công', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+             
+        if(response && response.response===false){
+                    alert(response.message)
+                }else{
+                    await this.getAllProductFromReact();
+                    this.setState({
+                        isOpenModalProduct: false,
+                    })
+                    
+                    emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                    
+                }
+            }catch(e){
+                toast.success('Thêm xe thất bại', {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                console.log(e)
+            }    
             // const requestOptions = {
             //     method: 'POST',
             //     headers: { 'Content-Type': 'application/json' },
@@ -112,11 +158,56 @@ class ProductManage extends Component {
         }
 
         editProduct =async(data)=>{
-            console.log('click save product:',data);
-            let ret =await editProductService(data);
-            this.setState ({
-                isOpenEditModalProduct:false,
-            });
+
+
+
+            try{
+                let response = await editProductService(data);
+                console.log('Thong bao :',response)
+                if(response.result == true)
+                {
+                toast.success('Chỉnh sửa xe thành công', {
+                                position: "bottom-center",
+                                width: 400,
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                        }                
+                 if(response && response.response===false){
+                            alert(response.message)
+                        }else{
+                            await this.getAllProductFromReact();
+                            this.setState({
+                                isOpenEditModalProduct: false,
+                            })
+                            
+                            emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                            
+                         }
+                    }catch(e){
+                        toast.success('Chỉnh sửa xe thất bại', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                        console.log(e)
+                    }    
+
+
+            // console.log('click save product:',data);
+            // let ret =await editProductService(data);
+            // this.setState ({
+            //     isOpenEditModalProduct:false,
+            // });
 
         }
 
@@ -124,12 +215,43 @@ class ProductManage extends Component {
         handleDeleteProduct = async (data) => {
             //alert('click delete')
             //console.log('check', data)
+            // try{
+            //     let res = await deleteProduct(data.productId);
+            //     console.log(res)
+            // }catch(e){
+            //     console.log(e)
+            // }
+
+
+
+
+
+            
             try{
-                let res = await deleteProduct(data.productId);
-                console.log(res)
+                let response = await deleteProduct(data.productId);
+                if(response && response.response===false){
+                    alert(response.message)
+                }else{
+                    await this.getAllProductFromReact();
+                    this.setState({
+                        isOpenModalProduct: false,
+                    })
+                    toast.success('Xóa thành công', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                    
+                }
             }catch(e){
                 console.log(e)
-            }
+            }    
            //window.location.reload();
         }
         render() {

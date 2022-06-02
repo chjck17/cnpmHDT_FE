@@ -6,7 +6,8 @@ import {getAllCustomers, deleteCustomer, getCustomer, createNewCustomerService, 
 import ModalCustomer from './ModalCustomer';
 import { emitter} from "../../../utils/emitter";
 import ModalUpdateCustomer from './ModalUpdateCustomer';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class CustomerManage extends Component {
 
     constructor(props) {
@@ -48,6 +49,19 @@ class CustomerManage extends Component {
     doHandleUpdateCustomer = async (data) =>{
         try{
             let response = await updateCustomerService(data);
+            if(response.result == true)
+            {
+            toast.success('Chỉnh sửa thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }              
             if(response && response.response===true){
                 alert(response.message)
             }else{
@@ -58,6 +72,16 @@ class CustomerManage extends Component {
   
             }
         }catch(e){
+            toast.success('Chỉnh sửa thất bại', {
+                position: "bottom-center",
+                width: 400,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.log(e)
         }  
 
@@ -78,8 +102,26 @@ class CustomerManage extends Component {
     createNewCustomer = async (data) => {
         try{
             let response = await createNewCustomerService(data);
+
+
+
+            if(response.result == true)
+        {
+        toast.success('Thêm thành công', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }              
+
             if(response && response.response===false){
                 alert(response.message)
+                
             }else{
                 await this.getAllCustomersFromReact();
                 this.setState({
@@ -90,18 +132,52 @@ class CustomerManage extends Component {
             }
         }catch(e){
             console.log(e)
+
+            toast.success('Thêm thất bại', {
+                position: "bottom-center",
+                width: 400,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }    
     }
     
     handleDeleteCustomer = async (data) => {
         try{
             let response = await deleteCustomer(data.id);
+            if(response.result == true)
+            {
+            toast.success('Xóa thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }              
             if(response && response.response===false){
                 alert(response.message)
             }else{
                 await this.getAllCustomersFromReact();
             }
         }catch(e){
+            toast.success('Xóa thất bại', {
+                position: "bottom-center",
+                width: 400,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.log(e)
         }
     }

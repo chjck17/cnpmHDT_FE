@@ -6,7 +6,8 @@ import {getAllOrders,getAllOrdersDetail} from '../../../services/ordersService';
 import { useState } from 'react'
 import './OrdersManage.scss'
 import _ from 'lodash'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class ModalEditOrders extends Component {
     constructor(props){
         super(props);
@@ -37,14 +38,38 @@ class ModalEditOrders extends Component {
         })
     }
     }
-    
+    checkValideInput = () => {
+        let isValid = true;
+        let i=0;
+        let arrInput = ['ordersAddress','ordersId','ordersReceiverName','ordersReceiverPhone'];
+        
+        for(i = 0; i < arrInput.length; i++){
+            //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
+            if(!this.state[arrInput[i]]){
+                isValid = false;
+                toast.success('Đăng ký không thành công vì thiếu info' , {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+                break;
+            }
+        }
+        return isValid;
+    }
     toggle = () => {
         this.props.toggleFromParent();
     }
     handleUpdateOrders=()=>{
-     
+        let isValid = this.checkValideInput();
+        if (isValid === true) {
       this.props.updateOrders(this.state)
-         
+        }
     }
     
 

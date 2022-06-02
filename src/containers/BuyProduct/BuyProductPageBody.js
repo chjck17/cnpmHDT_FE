@@ -61,7 +61,7 @@ class BuyProductPageBody extends Component {
         for(let i = 0; i < arrInput.length; i++){
             if(!this.state[arrInput[i]]){
                 isValid = false;
-                toast.success('Đặt hàng không thành công vì thiếu ' + arrInput1[i], {
+                toast.success('Đặt hàng không thành công vì thiếu info' , {
                     position: "bottom-center",
                     width:400,
                     autoClose: 5000,

@@ -36,22 +36,22 @@ class RegisterModal extends Component {
         let isValid = this.checkValideInput();
         if (isValid === true) {
             let response = this.props.RegisterOrders(this.state)
-            if (response.result == true) {
-                toast.success('Đăng ký thành công', {
-                    position: "bottom-center",
-                    width: 400,
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            } else {
-                this.setState({
-                    errMessage: response.message
-                })
-            }
+            // if (response.result == true) {
+            //     toast.success('Đăng ký thành công', {
+            //         position: "bottom-center",
+            //         width: 400,
+            //         autoClose: 5000,
+            //         hideProgressBar: false,
+            //         closeOnClick: true,
+            //         pauseOnHover: true,
+            //         draggable: true,
+            //         progress: undefined,
+            //     });
+            // } else {
+            //     this.setState({
+            //         errMessage: response.message
+            //     })
+            // }
 
         }
 

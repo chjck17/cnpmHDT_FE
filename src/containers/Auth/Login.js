@@ -9,6 +9,10 @@ import {handleLoginApi} from '../../services/userService'
 import { FormattedMessage } from 'react-intl';
 import { cnpmConstant } from '../../utils/constant.js';
 import RegisterModal  from './RegisterModal.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { emitter} from "../../utils/emitter";
+//import { emitter} from "../../../package-lock.json"
 
 import {RegisterService} from '../../services/customerService.js'
 
@@ -74,9 +78,67 @@ class Login extends Component {
     }
     RegisterOrders= async (data) => {
         // let response = await editStateOrdersService(data);
-        let response = await RegisterService(data);
-        console.log('respones create cus: ', response)
-     
+        // let response = await RegisterService(data);
+        // console.log('respones create cus: ', response)
+        try{
+            let response = await RegisterService(data);
+            console.log('Thong bao :',response.result)
+            if(response.result == true)
+            {
+            toast.success('tạo tài khoản thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                 else{
+                    toast.success('Tạo tài khoản thất bại', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    this.setState({
+                        isOpenModalRegister: false,
+                    })
+                 }
+            if(response && response.response===false){
+                        alert(response.message)
+                    }else{
+                        //await this.getAllOrdersFromReact();
+                        this.setState({
+                            isOpenModalRegister: false,
+                        })
+                        
+                        emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                        
+                    }
+                }catch(e){
+                    this.setState({
+                        isOpenModalRegister: false,
+                    })
+                    toast.success('Tạo tài khoản thất bại', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    console.log(e)
+                }    
+
      }
     render() {
         return (
