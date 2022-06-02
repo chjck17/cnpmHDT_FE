@@ -3,7 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter} from "../../../utils/emitter";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class ModalCustomer extends Component {
 
     constructor(props){
@@ -78,11 +79,22 @@ class ModalCustomer extends Component {
 
     checkValideInput = () => {
         let isValid = true;
+        let i=0
         let arrInput = ['customerFullName','customerEmail','customerPhone','birthday','gender','isLoyalty','status','customerUsername'];
-        for(let i = 0; i < arrInput.length; i++){
+        for(i = 0; i < arrInput.length; i++){
+            //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
             if(!this.state[arrInput[i]]){
                 isValid = false;
-                alert('Missing parameter: '+ arrInput[i]);
+                toast.success('Đăng ký không thành công vì thiếu info' , {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 break;
             }
         }

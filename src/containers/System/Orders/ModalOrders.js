@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { useState } from 'react'
 import './OrdersManage.scss'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ModalOrders extends Component {
     constructor(props){
@@ -27,10 +28,35 @@ class ModalOrders extends Component {
     handleAddNewOrders=()=>{
       //let Duy =this.state.createOrdersDetailFormList
       //console.log('data ne Duyyyy',this.state)
+      let isValid = this.checkValideInput();
+      if (isValid === true) {
       this.props.createNewOrders(this.state)
-         
+      }
     }
-    
+    checkValideInput = () => {
+      let isValid = true;
+      let i=0;
+      let arrInput = ['createOrdersDetailFormList','customerId','ordersAddress','ordersReceiverName','ordersReceiverPhone','ordersSaleOff','paymentMethod'];
+      
+      for(i = 0; i < arrInput.length; i++){
+          //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
+          if(!this.state[arrInput[i]]){
+              isValid = false;
+              toast.success('Thêm không thành công vì thiếu info' , {
+                  position: "bottom-center",
+                  width: 400,
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+              })
+              break;
+          }
+      }
+      return isValid;
+  }
 handleSubmit = task => {
  
     this.setState({createOrdersDetailFormList: [...this.state.createOrdersDetailFormList, task]});

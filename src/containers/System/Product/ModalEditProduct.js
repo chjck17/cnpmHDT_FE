@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import _ from 'lodash'
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class ModalEditProduct extends Component {
 
     constructor(props){
@@ -61,18 +63,30 @@ class ModalEditProduct extends Component {
 
     checkValideInput = () => {
         let isValid = true;
+        let i=0;
         let arrInput = ['productId','productName','productPrice','productImage','productDescription','productShortDescription','productCategoryId','productSaleOff'];
         
-        for(let i = 0; i < arrInput.length; i++){
-            console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
-            if(!this.state[arrInput[i]]){
-                isValid = false;
-                alert('Missing parameter: '+ arrInput[i]);
-                break;
+        for(i = 0; i < arrInput.length; i++){
+                    //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
+                    if(!this.state[arrInput[i]]){
+                        isValid = false;
+                        toast.success('Không thành công vì thiếu info' , {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
+                        break;
+                    }
+               
             }
-        }
+        
         return isValid;
-    }
+        }
     handleAddNewProduct = () => {
         let isValid = this.checkValideInput();
         if(isValid === true){
@@ -87,9 +101,21 @@ class ModalEditProduct extends Component {
         //let isValid = true; 
         if(isValid === true){
             //call api create modal
-            this.props.editProduct(this.state);
+            let respon =this.props.editProduct(this.state);
+            // toast.success('Thay đổi thành công', {
+            //     position: "bottom-center",
+            //     width: 400,
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
+            console.log(respon)
         }
-        window.location.reload();
+      
+     
     }    
 
     render() {

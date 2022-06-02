@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class ModalProduct extends Component {
 
     constructor(props){
@@ -55,21 +56,43 @@ class ModalProduct extends Component {
             //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
             if(!this.state[arrInput[i]]){
                 isValid = false;
-                alert('Missing parameter: '+ arrInput[i]);
+                toast.success('Đăng ký không thành công vì thiếu info' , {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 break;
             }
         }
         return isValid;
     }
+    
     handleAddNewProduct = () => {
-        console.log('cai them ne DUYYYYYYYYYYYYYYY:',this.state)
-        //window.location.reload();
+      
+        //let response = this.props.createNewProduct(this.state)
+        this.setState({
+            errMessage: ''
+        })
         let isValid = this.checkValideInput();
-        if(isValid === true){
-            //call api create modal
-            this.props.createNewProduct(this.state);
-        }
-        
+        if (isValid === true) {
+             let response = this.props.createNewProduct(this.state)
+            //if (response.result == true) {
+                
+             //}
+            // else {
+            //     this.setState({
+            //         errMessage: response.message
+            //     })
+            // }
+
+        }   
+
+        //console.log('Thong bao :',response)
     }
     
     handleEditProduct = () => {
@@ -80,6 +103,8 @@ class ModalProduct extends Component {
         }
         
     }    
+
+    
 
     render() {
         return (

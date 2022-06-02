@@ -7,6 +7,10 @@ import ModalEditOrders from './ModalEditOrders';
 import ModalOrdersDetail from './ModalOrdersDetail';
 import ModalOrders from './ModalOrders';
 import ModalEditStateOrders from './ModalEditStateOrders';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { emitter} from "../../../utils/emitter";
+
 class OrdersManage extends Component {
 // check hàm contructor 
 // muốn khai báo 1 đối tượng cần tạo đầu tiên mà nó là contructor
@@ -99,23 +103,174 @@ class OrdersManage extends Component {
     }
 
     createNewOrders = async (data) => {
-         let response = await createNewOrdersService(data);
-        // this.setState ({
-        //     isOpenModalOrders:false,
-        // });
-        // location.reload();
-        console.log('respones create cus: ', response)
-        //console.log('check data from child: ', data)
+        //  let response = await createNewOrdersService(data);
+        // // this.setState ({
+        // //     isOpenModalOrders:false,
+        // // });
+        // // location.reload();
+        // console.log('respones create cus: ', response)
+        // //console.log('check data from child: ', data)
+
+
+
+
+
+        try{
+            let response = await createNewOrdersService(data);
+            console.log('Thong bao :',response.result)
+            if(response.result == true)
+            {
+            toast.success('Thêm thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                 
+            if(response && response.response===false){
+                        alert(response.message)
+                    }else{
+                        await this.getAllOrdersFromReact();
+                        this.setState({
+                            isOpenModalOrders: false,
+                        })
+                        
+                        emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                        
+                    }
+                }catch(e){
+                    toast.success('Thêm thất bại', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    console.log(e)
+                }    
 
     }
     updateNewOrders= async (data) => {
+    //     let response = await editOrdersService(data);
+    //    console.log('respones create cus: ', response)
+
+
+
+
+
+       try{
         let response = await editOrdersService(data);
-       console.log('respones create cus: ', response)
+        console.log('Thong bao :',response.result)
+        if(response.result == true)
+        {
+        toast.success('Chỉnh sửa thành công', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+             
+        if(response && response.response===false){
+                    alert(response.message)
+                }else{
+                    await this.getAllOrdersFromReact();
+                    this.setState({
+                        isEditModalOrders: false,
+                    })
+                    
+                    emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                    
+                }
+            }catch(e){
+                toast.success('Chỉnh thất sửa bại', {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                console.log(e)
+            }    
+
 
    }
    updateStateNewOrders= async (data) => {
-   // let response = await editStateOrdersService(data);
-   console.log('respones create cus: ', data)
+//    // let response = await editStateOrdersService(data);
+//    console.log('respones create cus: ', data)
+
+
+
+
+   
+   try{
+    let response = await editStateOrdersService(data);
+    console.log('Thong bao :',response.result)
+    if(response.result == true)
+    {
+    toast.success('Chỉnh sửa thành công', {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+            else{
+                toast.success('Chỉnh sửa thất bại', {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+         
+    if(response && response.response===false){
+                alert(response.message)
+            }else{
+                await this.getAllOrdersFromReact();
+                this.setState({
+                    isEditModalStateOrders: false,
+                })
+                
+                emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                
+            }
+        }catch(e){
+            toast.success('Chỉnh sửa thất bại', {
+                position: "bottom-center",
+                width: 400,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            console.log(e)
+        }    
 
 }
 
@@ -182,11 +337,11 @@ class OrdersManage extends Component {
                                         //console.log('eric check map ', item, index)  
                                         let t=''                           
                                         if(ss.ordersState=='1'){
-                                           t='Da tao'
+                                           t='Hoàn thành'
                                          }
                                          else if (ss.ordersState=='2')
                                          {
-                                            t='Da huy'
+                                            t='Đã hủy'
                                          }
                                          else{
                                             t=''
