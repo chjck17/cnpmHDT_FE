@@ -27,7 +27,7 @@ class System extends Component {
                             <Route path="/system/province-manage" component={ProvinceManage} />
                             <Route path="/system/product-manage" component={ProductManage} />
                             <Route path="/system/orders-manage" component={OrdersManage} />
-                            <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
+                            <Route path="/system/category-manage" component={CategoryManage} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>
                     </div>

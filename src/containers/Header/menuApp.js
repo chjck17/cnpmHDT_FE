@@ -10,7 +10,7 @@ export const adminMenu = [
                     { name: 'menu.system.system-administrator.news-manage', link: '/system/news-manage' },
                     { name: 'menu.system.system-administrator.product-manage', link: '/system/product-manage' },
                     { name: 'menu.system.system-administrator.orders-manage', link: '/system/orders-manage' },
-                    { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
+                    { name: 'menu.system.system-administrator.category-manage', link: '/system/category-manage' },
                 ]
             },
             // { name: 'menu.system.system-parameter.header', link: '/system/system-parameter' },

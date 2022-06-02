@@ -5,6 +5,8 @@ import './CategoryManage.scss';
 import CreateCategoryModal from './CreateCategoryModal';
 import UpdateCategoryModal from './UpdateCategoryModal';
 import { emitter} from "../../../utils/emitter";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {getAllCategories,createNewCategory,updateCategory,deleteCategory} from '../../../services/categoryService'
 class CategoryManage extends Component {
     constructor(props){
@@ -63,29 +65,123 @@ class CategoryManage extends Component {
     }
 
     updateCategoryFromReact = async(data) => {
-        let response = await updateCategory(data);
-        if(response && response.result){
-            await this.getAllCategoriesFromReact();
-            this.setState({
-                isOpenUpdateCategoryModal: false,
-            })
-            alert(response.message)
-        }else{
-            alert(response.message)
-        }
+        // let response = await updateCategory(data);
+        // if(response && response.result){
+        //     await this.getAllCategoriesFromReact();
+        //     this.setState({
+        //         isOpenUpdateCategoryModal: false,
+        //     })
+        //     alert(response.message)
+        // }else{
+        //     alert(response.message)
+        // }
+
+
+
+
+
+        try{
+            let response = await updateCategory(data);
+            console.log('Thong bao :',response.result)
+            if(response.result == true)
+            {
+            toast.success('Chỉnh sửa thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                 
+            if(response && response.response===false){
+                        alert(response.message)
+                    }else{
+                        await this.getAllCategoriesFromReact();
+                        this.setState({
+                            isOpenUpdateCategoryModal: false,
+                        })
+                        
+                        emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                        
+                    }
+                }catch(e){
+                    toast.success('Chỉnh sửa thất bại', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    console.log(e)
+                }    
     }
 
     createNewCategoryFromReact = async (data) => {
-        let response = await createNewCategory(data);
-        if(response && response.result){
-            await this.getAllCategoriesFromReact();
-            this.setState({
-                isOpenCreateCategoryModal: false,
-            })
-            emitter.emit('EVENT_CLEAR_MODAL_DATA')
-        }else{
-            alert(response.message)
-        }
+        // let response = await createNewCategory(data);
+        // if(response && response.result){
+        //     await this.getAllCategoriesFromReact();
+        //     this.setState({
+        //         isOpenCreateCategoryModal: false,
+        //     })
+        //     emitter.emit('EVENT_CLEAR_MODAL_DATA')
+        // }else{
+        //     alert(response.message)
+        // }
+
+
+
+
+
+
+
+        try{
+            let response = await createNewCategory(data);
+            console.log('Thong bao :',response.result)
+            if(response.result == true)
+            {
+            toast.success('Thêm thành công', {
+                            position: "bottom-center",
+                            width: 400,
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    }
+                 
+            if(response && response.response===false){
+                        alert(response.message)
+                    }else{
+                        await this.getAllCategoriesFromReact();
+                        this.setState({
+                            isOpenCreateCategoryModal: false,
+                        })
+                        
+                        emitter.emit('EVENT_CLEAR_MODAL_DATA')
+                        
+                    }
+                }catch(e){
+                    toast.success('Thêm thất bại', {
+                        position: "bottom-center",
+                        width: 400,
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    console.log(e)
+                }    
     }
 
 

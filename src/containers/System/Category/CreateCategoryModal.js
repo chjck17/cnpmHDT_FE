@@ -3,7 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter} from "../../../utils/emitter";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 class CreateCategoryModal extends Component {
 
     constructor(props){
@@ -46,10 +47,36 @@ class CreateCategoryModal extends Component {
     }
 
     handleAddNewCategory = () => {
+        let isValid = this.checkValideInput();
+        if (isValid === true) {
         this.props.createNewCategoryFromReact(this.state);
+        }
     }
     // toggle={()=>{this.toggle()}}
-
+    checkValideInput = () => {
+        let isValid = true;
+        let i=0;
+        let arrInput = ['categoryName','categoryDescription','categoryOrdering','parentId'];
+        
+        for(i = 0; i < arrInput.length; i++){
+            //console.log('check inside loop', this.state[arrInput[i],arrInput[i]])
+            if(!this.state[arrInput[i]]){
+                isValid = false;
+                toast.success('Thêm không thành công vì thiếu info' , {
+                    position: "bottom-center",
+                    width: 400,
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+                break;
+            }
+        }
+        return isValid;
+    }
     render() {
         return (
             <Modal                 
